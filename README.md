@@ -2,7 +2,7 @@
 
 **Maintainer:** Zengzhao Gao (Harbin Engineering University, China) — wicalgambles@gmail.com
 · ORCID [0009-0007-9138-4642](https://orcid.org/0009-0007-9138-4642)
-· **License:** MIT · **Version:** 1.0.1 · **Zero runtime dependencies** · Python ≥ 3.9
+· **License:** MIT · **Version:** 1.0.2 · **Zero runtime dependencies** · Python ≥ 3.9
 
 `robustband` compares two sets of results on the same samples across scoring
 rules you choose. It shows **who leads, the margin range, and whether the conclusion
@@ -28,7 +28,7 @@ server or network request needed for that preview.
 ## Compare your own results
 
 **Windows, no Python installation:** download the **Windows portable ZIP** from
-[Releases](https://github.com/wicalgambles-jpg/robustband-public/releases/latest),
+[Releases](https://github.com/wicalgambles-jpg/robustband/releases/latest),
 extract the entire folder, and double-click `start_generalized.cmd` or
 `start_professional.cmd`. Keep `_internal` beside the executable. Source bundles
 remain available for editable adapters and optional NPZ preprocessing.
@@ -49,7 +49,9 @@ The text entry points start with the example's **two explicitly selected protoco
 (`first_num` / `last_num`, `exact_match`, `micro`). Select policies appropriate to
 your own task. The library's default family remains **80 configurations**.
 Both outputs belong to the same record in the new paired format; duplicate IDs,
-missing fields and incomplete selected group labels are rejected.
+missing fields, unknown extra fields and incomplete selected group labels are rejected.
+For intentional extra columns, use the [explicit conversion workflow](docs/release_1.0.2.md#input-contract-change)
+and inspect its omission manifest before auditing.
 
 For terminal use and AI-assisted automation:
 
@@ -121,7 +123,7 @@ The original 0.5.0 release is retained as an archived baseline.
 
 ## Domain applications
 
-Version 1.0.1 provides three adapters through the same browser, report and replay
+Version 1.0.2 provides three adapters through the same browser, report and replay
 workflow. Choose a data card, download its template and declare the target:
 
 | Domain | Input | What is audited |
@@ -190,7 +192,7 @@ an algebraic check on the aggregation code. New independent items can change the
 ```bash
 python -m pip install -e .        # editable, from the repo root
 # Or install the downloaded release wheel offline:
-python -m pip install --no-index --no-deps robustband-1.0.1-py3-none-any.whl
+python -m pip install --no-index --no-deps robustband-1.0.2-py3-none-any.whl
 ```
 
 After installation, `robustband ui` and `python -m robustband ui` are equivalent.
@@ -279,7 +281,7 @@ sequential snapshot `results/tooling_certificate_sequential.json`; Python 3.12+
 uses the compensated snapshot `results/tooling_certificate.json`. The verifier
 detects the sum behavior and strictly replays the corresponding frozen artifact.
 Near-zero bootstrap margins differ between these profiles; see
-[the 1.0.1 evidence](docs/release_1.0.1.md). Exact rational endpoints are checked
+[the 1.0.2 evidence](docs/release_1.0.2.md). Exact rational endpoints are checked
 separately.
 The repository ships the frozen model outputs for rescoring; it does not currently pin
 the model revision and full generation environment needed to reproduce those outputs.
@@ -304,7 +306,7 @@ the edge branches (blank-only parses, `\boxed{}` extraction and fallback, numeri
 equal strings, empty-side F1, macro aggregation without a meta key, empty margins,
 empty family rejection).
 
-**Release checks.** See the [1.0.1 evaluation](docs/release_1.0.1.md) and
+**Release checks.** See the [1.0.2 evaluation](docs/release_1.0.2.md) and
 version-bound receipts in `results/` for executed test and coverage totals. These include paired-input
 validation, report replay, command exits, ranking audits and actual local HTTP requests. Two
 automated browser checks drive the app in headless Chromium (Node ≥ 22): one for the
@@ -345,7 +347,7 @@ policies and target weights appropriate to your application before interpreting
 the reported band. Degenerate all-zero scorers are diagnostics of the selected
 policy; they do not validate a benchmark or establish a useful model comparison.
 
-The [GitHub CI](https://github.com/wicalgambles-jpg/robustband-public/actions)
+The [GitHub CI](https://github.com/wicalgambles-jpg/robustband/actions)
 checks nine OS/Python combinations and isolated distribution installs.
 [Deployment and release instructions](docs/github_deployment.md) describe the
 downloadable artifacts and offline documentation. Independent user outcomes and
@@ -421,12 +423,12 @@ See [the offline tutorial and limitations](docs/external_cases.md) and
 [the release and deployment mechanics](docs/github_deployment.md).
 
 ```bash
-python -S experiments/external_cases.py --verify results/external_cases_1.0.1.json
+python -S experiments/external_cases.py --verify results/external_cases_1.0.2.json
 ```
 
 Historical integration and timing reports retain their source hashes.
 Verify the 0.4.0/0.4.1 integration artifacts at their respective tags; current
-commands verify the 1.0.1 artifact with the same numerical readings.
+commands verify the 1.0.2 artifact with the same numerical readings.
 
 ## Reproduce the headline readings
 
@@ -443,9 +445,9 @@ python tooling_certificate.py && python verify_tooling_certificate.py
   title  = {robustband: the score you report is a band, not a point},
   author = {Gao, Zengzhao},
   year   = {2026},
-  version = {1.0.1},
+  version = {1.0.2},
   note   = {Instrument for certified stability bands of benchmarking claims},
-  url    = {https://github.com/wicalgambles-jpg/robustband-public}
+  url    = {https://github.com/wicalgambles-jpg/robustband}
 }
 ```
 

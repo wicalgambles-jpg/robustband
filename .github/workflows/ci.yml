@@ -38,14 +38,17 @@ jobs:
           python -S -c "import robustband; print('imports with site-packages disabled (-S):', robustband.__version__)"
       - name: Run the complete release-quality gate from the checkout
         run: python submission/check_quality.py
+      - name: Measure fresh-process runtime and OS peak resident memory
+        run: python -S experiments/measure_resources.py
       - name: Keep quality and newline-portability evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: quality-${{ matrix.os }}-py${{ matrix.python-version }}
           path: |
-            results/quality_gate_1.0.1.json
-            build/resource_portability_1.0.1.json
+            results/quality_gate_1.0.2.json
+            results/resource_measurement_1.0.2.json
+            build/resource_portability_1.0.2.json
             build/pytest.xml
             build/quality-gate-*.log
           if-no-files-found: error
@@ -106,7 +109,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: converter-${{ matrix.os }}
-          path: results/converter_acceptance_1.0.1.json
+          path: results/converter_acceptance_1.0.2.json
 
   portable:
     name: Windows portable executable
@@ -123,9 +126,9 @@ jobs:
         with:
           name: robustband-windows-portable
           path: |
-            dist/robustband-1.0.1-windows-x64.zip
-            results/portable_build_1.0.1.json
-            results/portable_acceptance_1.0.1.json
+            dist/robustband-1.0.2-windows-x64.zip
+            results/portable_build_1.0.2.json
+            results/portable_acceptance_1.0.2.json
 
   distribution:
     name: offline wheel and source distribution
@@ -148,11 +151,11 @@ jobs:
       - name: Preserve the verified distribution artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: robustband-1.0.1-linux-distributions
+          name: robustband-1.0.2-linux-distributions
           path: |
-            dist/robustband-1.0.1-py3-none-any.whl
-            dist/robustband-1.0.1.tar.gz
-            results/distribution_check_1.0.1.json
+            dist/robustband-1.0.2-py3-none-any.whl
+            dist/robustband-1.0.2.tar.gz
+            results/distribution_check_1.0.2.json
             build/welcome-generalized.html
             build/welcome-professional.html
             docs/api/

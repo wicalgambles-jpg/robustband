@@ -14,13 +14,18 @@ DEFAULT_FAMILY = {"parses": ["first_num", "last_num"],
                   "metrics": ["exact_match"], "aggs": ["micro"]}
 DEMO_CSV = ('sample_id,prompt,gold,output_a,output_b\n'
             'example-1,What is 6 times 7?,42,the answer is 7 but really 42,the answer is 42 but really 7\n')
-def _normalize(rows):
+def _normalize(rows, allow_extra=False):
     normalized, seen = [], set()
     for number, row in enumerate(rows, 1):
         if number > MAX_ROWS:
             raise ValueError("Use at most %d paired records per audit; split the file or use the Python API." % MAX_ROWS)
         if not isinstance(row, dict) or not set(REQUIRED) <= row.keys():
             raise ValueError("Record %d needs fields: %s." % (number, ", ".join(REQUIRED)))
+        extra = set(row) - set(REQUIRED) - set(GROUPS.values())
+        if extra and not allow_extra:
+            raise ValueError("Record %d has unrecognized fields: %s. Remove them, correct the column names, "
+                             "or use convert --allow-extra-columns to record omitted columns in a manifest."
+                             % (number, ", ".join(sorted(map(str, extra)))))
         identity = row["sample_id"]
         if type(identity) not in (str, int) or not str(identity).strip():
             raise ValueError("Record %d needs a nonempty string or integer sample_id." % number)
@@ -46,9 +51,9 @@ def _normalize(rows):
     return normalized
 
 
-def load_paired(text, format="csv"):
+def load_paired(text, format="csv", *, allow_extra=False):
     """Read one paired table; preserve outputs and reject ambiguous schemas."""
-    return _normalize(read_table(text, format, REQUIRED, MAX_BYTES, MAX_ROWS))
+    return _normalize(read_table(text, format, REQUIRED, MAX_BYTES, MAX_ROWS), allow_extra)
 
 
 def _family(settings):

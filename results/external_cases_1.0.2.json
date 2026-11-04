@@ -1,0 +1,1148 @@
+{
+  "schema": "robustband.external_cases/v1",
+  "robustband_version": "1.0.2",
+  "protocol_sha256_lf": "0542ab3759c603f2ad730d6dc365e1217654ad4ece7fd747ee7a683acc56f753",
+  "manifest_sha256_lf": "342273b9766f78e156381df08829adfeeef45d329ab0c0644898945a6e0bf6e9",
+  "source_revision": "cbe6c8019c72a75749290b02a95be03aea094e49",
+  "code_sha256_lf": {
+    "experiments/external_cases.py": "6a2dfdc0f11f54831d2f5d3aa7c7cee075d9d6d34127799c001a8d96a3c3cfeb",
+    "demo/ref_impl.py": "f9f09274505b6b858e6919c358a2fbc314ba49c05d2f2fece045f307b69d6e16",
+    "robustband/__init__.py": "0dddbd42e0658db32abe57d3adbbd0b9f3c044e1a1d2e5f2498b1e8880b29584",
+    "robustband/__main__.py": "fc08b4af0c906366ecf27b3435adc32c91a9e58d1281f4c3da243aab7e7e17d1",
+    "robustband/adapter.py": "08835ef70113353ab4e6965b7c321d05399d132c3a0d903320d9bb246f694cb9",
+    "robustband/aggregate.py": "b1a72332221ac48d14174b0901031bae7751da4f7b6f05e24f599b93eda70274",
+    "robustband/audit_engine.py": "c97885aeabcc3e50f4df9e2a081c3c730c81c5c23e0fac184910ef3eb17dfeb6",
+    "robustband/certificate.py": "ce7022f4fb6ef80e1f2b8fe63089ff184dcba82cd6ad0144a9f2193499c66e7f",
+    "robustband/claim.py": "ac3663ce32bbe3f9ba5a0c049c5db4e0ab7c1f1eb7043ce9365f5dabf0ccc3b6",
+    "robustband/cli.py": "8e63709911ab60480472eadc19f44cc752c099ebe066afb958f2b24ccb3f08e4",
+    "robustband/compiled.py": "af07df7c796787ada82b80335d11d92a9430e4194ceb5459b4a2c6209bd06659",
+    "robustband/convert.py": "8dc754098c062afe963d7319208f3ea84c25364b5cb5f3fd7fa5faba3d79c549",
+    "robustband/core.py": "5a2ce2f749f0451accd8ebdcc13572d79cb28e6e677d0a2802a3be6642052bbe",
+    "robustband/decision.py": "1598d9f7bf9e874a108efbd7efe2cbfc06387177ef1ed33f815cdf2d63b1982f",
+    "robustband/decision_report.py": "90b00134217c03bb3e461d430c77929f79e158db849623cf11887eb7781e7cde",
+    "robustband/domains.py": "883d451e6a64bf6a01e34d71c1b98f3c4452440b66063cd7b9a5fd9f78339804",
+    "robustband/evalscope.py": "6fc9c6acbac082a69456bb379de7ef7e6bbe4d6936eacb79f50355377c47ad7e",
+    "robustband/input_utils.py": "acd4977a43d6c3118c425407d70392a9252ba5da28ce2ad647432715d89e1aaf",
+    "robustband/local_ui.py": "5838bbe921a71f8ea57d10810937418ad500a85649b47de6f0f663bb26b052d1",
+    "robustband/matrix.py": "a1427c52864c24be7b79bc1108380974cb08935b95646e71b137f23f06f9eb65",
+    "robustband/matrix_report.py": "0fe76693affc039f5fca0987d08c05eddbed7faff3e0998ae88d64068878f35b",
+    "robustband/metrics.py": "bc3df4721a7be99ccfa614d789ac4e43782945f7fe8c23496eb9a8a2632ff617",
+    "robustband/parsers.py": "e2d94b1d8ee4b6576415f6a2cbc7fbfca3c9a0865a404435d8778f1109710cac",
+    "robustband/rational.py": "db0661fff0e18085e3fb5e47c0be0676ac0e09358a2f442ea60c47345474d052",
+    "robustband/report.py": "bdf2c7bc4041c935ef73ab04b81718cf311f1c46fe18c49c499089c525acbb13",
+    "robustband/report_style.py": "fc101cd107e12cded659e0213f8fe4221ba8b19223edc2170419443d7a54cd38",
+    "robustband/review.py": "17a08fe68027918e52b2a64c3384ae44e0e0a63efd48892ce7493399890fed61",
+    "robustband/review_dual.py": "956834417f4f41e0a531332f5b678225cb79f6b6e5685d3bee42070e559c3ede",
+    "robustband/review_search.py": "486be196a821aa8950fb24801af9c6e05aaf45a1d3a685cb49063f064fd9a697",
+    "robustband/scores.py": "885530082840a4d52ef45e7049abe623376768370ebe65b01c27e482f16a3d6a",
+    "robustband/segmentation.py": "073151a0ceea34e83c9f166c7be14105ec6c9256755b679c408aeb86110b06e5",
+    "robustband/storage.py": "e8b593aeb0bfa97722a6ac74af96d420d89a9a47f7f1833e1ae6ba3cff05402a",
+    "robustband/workflow.py": "1846ac4ae0295a69a32029aa18b927422d580e460a250d76e13ba98c28f9a704"
+  },
+  "new_model_inference": false,
+  "external_adoption_evidence": false,
+  "limits": [
+    "Ten-item public demonstration samples are not representative evaluations",
+    "Model aliases and archived outputs do not identify immutable model weights",
+    "Candidate-derived review intervals are uncalibrated assumptions",
+    "External-origin inputs are not external adoption of robustband"
+  ],
+  "cases": {
+    "gsm8k": {
+      "n_pairs": 10,
+      "sample_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "pairing": "equal IDs, input messages (excluding verified final completion), target and metadata",
+      "checks": {
+        "raw_equals_cached": true,
+        "independent_item_scorer": true,
+        "exact_rational_band": true
+      },
+      "band": {
+        "claim": "qwen3-max > qwen-plus",
+        "n_protocols": 20,
+        "exact_tables": {
+          "strict_exact|exact_match|micro": {
+            "qwen-plus": "0",
+            "qwen3-max": "0"
+          },
+          "strict_exact|contains|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "strict_exact|f1_token|micro": {
+            "qwen-plus": "0",
+            "qwen3-max": "0"
+          },
+          "strict_exact|numeric_tol|micro": {
+            "qwen-plus": "0",
+            "qwen3-max": "0"
+          },
+          "first_num|exact_match|micro": {
+            "qwen-plus": "1/10",
+            "qwen3-max": "0"
+          },
+          "first_num|contains|micro": {
+            "qwen-plus": "1/10",
+            "qwen3-max": "0"
+          },
+          "first_num|f1_token|micro": {
+            "qwen-plus": "1/10",
+            "qwen3-max": "0"
+          },
+          "first_num|numeric_tol|micro": {
+            "qwen-plus": "1/10",
+            "qwen3-max": "0"
+          },
+          "last_num|exact_match|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "last_num|contains|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "last_num|f1_token|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "last_num|numeric_tol|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "last_line_num|exact_match|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "last_line_num|contains|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "last_line_num|f1_token|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "last_line_num|numeric_tol|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "boxed|exact_match|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "boxed|contains|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "boxed|f1_token|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          },
+          "boxed|numeric_tol|micro": {
+            "qwen-plus": "1",
+            "qwen3-max": "1"
+          }
+        },
+        "exact_margins": {
+          "strict_exact|exact_match|micro": "0",
+          "strict_exact|contains|micro": "0",
+          "strict_exact|f1_token|micro": "0",
+          "strict_exact|numeric_tol|micro": "0",
+          "first_num|exact_match|micro": "-1/10",
+          "first_num|contains|micro": "-1/10",
+          "first_num|f1_token|micro": "-1/10",
+          "first_num|numeric_tol|micro": "-1/10",
+          "last_num|exact_match|micro": "0",
+          "last_num|contains|micro": "0",
+          "last_num|f1_token|micro": "0",
+          "last_num|numeric_tol|micro": "0",
+          "last_line_num|exact_match|micro": "0",
+          "last_line_num|contains|micro": "0",
+          "last_line_num|f1_token|micro": "0",
+          "last_line_num|numeric_tol|micro": "0",
+          "boxed|exact_match|micro": "0",
+          "boxed|contains|micro": "0",
+          "boxed|f1_token|micro": "0",
+          "boxed|numeric_tol|micro": "0"
+        },
+        "exact_band": [
+          "-1/10",
+          "0"
+        ],
+        "stability_fraction": "0",
+        "break_set": [
+          "strict_exact|exact_match|micro",
+          "strict_exact|contains|micro",
+          "strict_exact|f1_token|micro",
+          "strict_exact|numeric_tol|micro",
+          "first_num|exact_match|micro",
+          "first_num|contains|micro",
+          "first_num|f1_token|micro",
+          "first_num|numeric_tol|micro",
+          "last_num|exact_match|micro",
+          "last_num|contains|micro",
+          "last_num|f1_token|micro",
+          "last_num|numeric_tol|micro",
+          "last_line_num|exact_match|micro",
+          "last_line_num|contains|micro",
+          "last_line_num|f1_token|micro",
+          "last_line_num|numeric_tol|micro",
+          "boxed|exact_match|micro",
+          "boxed|contains|micro",
+          "boxed|f1_token|micro",
+          "boxed|numeric_tol|micro"
+        ],
+        "verdict": "REFUTED"
+      },
+      "item_scores": {
+        "strict_exact|exact_match|micro": {
+          "qwen-plus": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "qwen3-max": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "strict_exact|contains|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "strict_exact|f1_token|micro": {
+          "qwen-plus": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "qwen3-max": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "strict_exact|numeric_tol|micro": {
+          "qwen-plus": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "qwen3-max": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "first_num|exact_match|micro": {
+          "qwen-plus": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "qwen3-max": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "first_num|contains|micro": {
+          "qwen-plus": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "qwen3-max": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "first_num|f1_token|micro": {
+          "qwen-plus": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "qwen3-max": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "first_num|numeric_tol|micro": {
+          "qwen-plus": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "1",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "qwen3-max": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "last_num|exact_match|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "last_num|contains|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "last_num|f1_token|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "last_num|numeric_tol|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "last_line_num|exact_match|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "last_line_num|contains|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "last_line_num|f1_token|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "last_line_num|numeric_tol|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "boxed|exact_match|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "boxed|contains|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "boxed|f1_token|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        },
+        "boxed|numeric_tol|micro": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1"
+          ]
+        }
+      },
+      "review": {
+        "epsilon": "1/10",
+        "unrestricted": {
+          "trusted_human_labels": 0,
+          "completion_certificate": {
+            "schema": "robustband.review_certificate/v1",
+            "problem_digest": "cf39d271bfd68946f07ab638b40a9ce29a83b76be13991396aeaaa827731f77f",
+            "assumptions": [
+              "trusted differences lie in [-1,1]; no other coverage restriction"
+            ],
+            "threshold": "0",
+            "reviewed": {},
+            "target_bounds": {
+              "micro": [
+                "-1",
+                "1"
+              ]
+            },
+            "status": "NEEDS_REVIEW"
+          },
+          "review_plan": {
+            "schema": "robustband.review_plan/v1",
+            "problem_digest": "cf39d271bfd68946f07ab638b40a9ce29a83b76be13991396aeaaa827731f77f",
+            "reviewed_ids": [],
+            "selected_ids": [
+              "gsm8k-0",
+              "gsm8k-1",
+              "gsm8k-2",
+              "gsm8k-3",
+              "gsm8k-4",
+              "gsm8k-5",
+              "gsm8k-6",
+              "gsm8k-7",
+              "gsm8k-8",
+              "gsm8k-9"
+            ],
+            "n_reviews": 10,
+            "epsilon": "1/10",
+            "query_lower_bound": 10,
+            "residual_widths": {
+              "micro": "0"
+            },
+            "width_guaranteed": true,
+            "optimality": "MINIMUM_CARDINALITY",
+            "method": "shared_price_group_search",
+            "search": {
+              "algorithm": "integer_surrogate_grouped/v1",
+              "node_budget": 5000,
+              "exchange_budget": 20000,
+              "exchange_checks": 0,
+              "portfolio_reviews": 10,
+              "heuristic_reviews": 10,
+              "nodes_visited": 0,
+              "contribution_groups": 1,
+              "binding_targets": 1,
+              "integer_scale_bits": 4,
+              "root_lower_bound": 10,
+              "budget_exhausted": false,
+              "search_proved_optimal": true,
+              "dual": {
+                "pricing_rounds": 8,
+                "pricing_skipped": true,
+                "search_directions": 0,
+                "proposed_directions": 0,
+                "pricing_reviews": 10,
+                "target_prices": [
+                  "5"
+                ]
+              }
+            },
+            "optimality_gap": 0,
+            "lower_bound_certificate": {
+              "schema": "robustband.review_lower_bound/v1",
+              "problem_digest": "cf39d271bfd68946f07ab638b40a9ce29a83b76be13991396aeaaa827731f77f",
+              "epsilon": "1/10",
+              "reviewed": {},
+              "target_prices": {
+                "micro": "5"
+              },
+              "retained_upper_bound": "1/2",
+              "query_lower_bound": 10
+            }
+          }
+        },
+        "candidate_UNVALIDATED": {
+          "trusted_human_labels": 0,
+          "completion_certificate": {
+            "schema": "robustband.review_certificate/v1",
+            "problem_digest": "9468a2ae3edab9494fad3b53131d4c21b6659318d9c62475762cc4383b03b56b",
+            "assumptions": [
+              "trusted reviews are correct",
+              "input rows represent the same items in both arms",
+              "trusted differences lie inside candidate scorer extrema; consensus is not validated"
+            ],
+            "threshold": "0",
+            "reviewed": {},
+            "target_bounds": {
+              "micro": [
+                "-1/10",
+                "0"
+              ]
+            },
+            "status": "REFUTED"
+          },
+          "review_plan": {
+            "schema": "robustband.review_plan/v1",
+            "problem_digest": "9468a2ae3edab9494fad3b53131d4c21b6659318d9c62475762cc4383b03b56b",
+            "reviewed_ids": [],
+            "selected_ids": [],
+            "n_reviews": 0,
+            "epsilon": "1/10",
+            "query_lower_bound": 0,
+            "residual_widths": {
+              "micro": "1/10"
+            },
+            "width_guaranteed": true,
+            "optimality": "MINIMUM_CARDINALITY",
+            "method": "shared_price_group_search",
+            "search": {
+              "algorithm": "integer_surrogate_grouped/v1",
+              "node_budget": 5000,
+              "exchange_budget": 20000,
+              "exchange_checks": 0,
+              "portfolio_reviews": 0,
+              "heuristic_reviews": 0,
+              "nodes_visited": 0,
+              "contribution_groups": 0,
+              "binding_targets": 0,
+              "integer_scale_bits": 4,
+              "root_lower_bound": 0,
+              "budget_exhausted": false,
+              "search_proved_optimal": true,
+              "dual": {
+                "pricing_rounds": 8,
+                "pricing_skipped": true,
+                "search_directions": 0,
+                "proposed_directions": 0,
+                "pricing_reviews": 0,
+                "target_prices": [
+                  "0"
+                ]
+              }
+            },
+            "optimality_gap": 0,
+            "lower_bound_certificate": {
+              "schema": "robustband.review_lower_bound/v1",
+              "problem_digest": "9468a2ae3edab9494fad3b53131d4c21b6659318d9c62475762cc4383b03b56b",
+              "epsilon": "1/10",
+              "reviewed": {},
+              "target_prices": {
+                "micro": "0"
+              },
+              "retained_upper_bound": "10",
+              "query_lower_bound": 0
+            }
+          }
+        }
+      }
+    },
+    "ifeval": {
+      "n_pairs": 10,
+      "sample_ids": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "pairing": "equal IDs, input messages (excluding verified final completion), target and metadata",
+      "checks": {
+        "imported_binary_scores": true,
+        "independently_rerun_instruction_grader": false,
+        "exact_rational_aggregation": true
+      },
+      "band": {
+        "claim": "qwen3-max > qwen-plus",
+        "n_protocols": 2,
+        "exact_tables": {
+          "prompt_level_strict": {
+            "qwen-plus": "9/10",
+            "qwen3-max": "4/5"
+          },
+          "prompt_level_loose": {
+            "qwen-plus": "9/10",
+            "qwen3-max": "9/10"
+          }
+        },
+        "exact_margins": {
+          "prompt_level_strict": "-1/10",
+          "prompt_level_loose": "0"
+        },
+        "exact_band": [
+          "-1/10",
+          "0"
+        ],
+        "stability_fraction": "0",
+        "break_set": [
+          "prompt_level_strict",
+          "prompt_level_loose"
+        ],
+        "verdict": "REFUTED"
+      },
+      "item_scores": {
+        "prompt_level_strict": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "0",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "0",
+            "0",
+            "1"
+          ]
+        },
+        "prompt_level_loose": {
+          "qwen-plus": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "0",
+            "1",
+            "1"
+          ],
+          "qwen3-max": [
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "1",
+            "0",
+            "1",
+            "1"
+          ]
+        }
+      },
+      "review": {
+        "epsilon": "1/10",
+        "unrestricted": {
+          "trusted_human_labels": 0,
+          "completion_certificate": {
+            "schema": "robustband.review_certificate/v1",
+            "problem_digest": "8012cb69f318cb83fc4ccfa63ef60ce7ad9d6e123c1422be65a2725807a77c01",
+            "assumptions": [
+              "trusted differences lie in [-1,1]; no other coverage restriction"
+            ],
+            "threshold": "0",
+            "reviewed": {},
+            "target_bounds": {
+              "micro": [
+                "-1",
+                "1"
+              ]
+            },
+            "status": "NEEDS_REVIEW"
+          },
+          "review_plan": {
+            "schema": "robustband.review_plan/v1",
+            "problem_digest": "8012cb69f318cb83fc4ccfa63ef60ce7ad9d6e123c1422be65a2725807a77c01",
+            "reviewed_ids": [],
+            "selected_ids": [
+              "ifeval-0",
+              "ifeval-1",
+              "ifeval-2",
+              "ifeval-3",
+              "ifeval-4",
+              "ifeval-5",
+              "ifeval-6",
+              "ifeval-7",
+              "ifeval-8",
+              "ifeval-9"
+            ],
+            "n_reviews": 10,
+            "epsilon": "1/10",
+            "query_lower_bound": 10,
+            "residual_widths": {
+              "micro": "0"
+            },
+            "width_guaranteed": true,
+            "optimality": "MINIMUM_CARDINALITY",
+            "method": "shared_price_group_search",
+            "search": {
+              "algorithm": "integer_surrogate_grouped/v1",
+              "node_budget": 5000,
+              "exchange_budget": 20000,
+              "exchange_checks": 0,
+              "portfolio_reviews": 10,
+              "heuristic_reviews": 10,
+              "nodes_visited": 0,
+              "contribution_groups": 1,
+              "binding_targets": 1,
+              "integer_scale_bits": 4,
+              "root_lower_bound": 10,
+              "budget_exhausted": false,
+              "search_proved_optimal": true,
+              "dual": {
+                "pricing_rounds": 8,
+                "pricing_skipped": true,
+                "search_directions": 0,
+                "proposed_directions": 0,
+                "pricing_reviews": 10,
+                "target_prices": [
+                  "5"
+                ]
+              }
+            },
+            "optimality_gap": 0,
+            "lower_bound_certificate": {
+              "schema": "robustband.review_lower_bound/v1",
+              "problem_digest": "8012cb69f318cb83fc4ccfa63ef60ce7ad9d6e123c1422be65a2725807a77c01",
+              "epsilon": "1/10",
+              "reviewed": {},
+              "target_prices": {
+                "micro": "5"
+              },
+              "retained_upper_bound": "1/2",
+              "query_lower_bound": 10
+            }
+          }
+        },
+        "candidate_UNVALIDATED": {
+          "trusted_human_labels": 0,
+          "completion_certificate": {
+            "schema": "robustband.review_certificate/v1",
+            "problem_digest": "3af83bb3b39dd79209b152302f9b5c61d17c20a63c959b2ec3b79bfaf22b0d75",
+            "assumptions": [
+              "trusted differences lie in the range of imported strict/loose scores; UNVALIDATED"
+            ],
+            "threshold": "0",
+            "reviewed": {},
+            "target_bounds": {
+              "micro": [
+                "-1/10",
+                "0"
+              ]
+            },
+            "status": "REFUTED"
+          },
+          "review_plan": {
+            "schema": "robustband.review_plan/v1",
+            "problem_digest": "3af83bb3b39dd79209b152302f9b5c61d17c20a63c959b2ec3b79bfaf22b0d75",
+            "reviewed_ids": [],
+            "selected_ids": [],
+            "n_reviews": 0,
+            "epsilon": "1/10",
+            "query_lower_bound": 0,
+            "residual_widths": {
+              "micro": "1/10"
+            },
+            "width_guaranteed": true,
+            "optimality": "MINIMUM_CARDINALITY",
+            "method": "shared_price_group_search",
+            "search": {
+              "algorithm": "integer_surrogate_grouped/v1",
+              "node_budget": 5000,
+              "exchange_budget": 20000,
+              "exchange_checks": 0,
+              "portfolio_reviews": 0,
+              "heuristic_reviews": 0,
+              "nodes_visited": 0,
+              "contribution_groups": 0,
+              "binding_targets": 0,
+              "integer_scale_bits": 4,
+              "root_lower_bound": 0,
+              "budget_exhausted": false,
+              "search_proved_optimal": true,
+              "dual": {
+                "pricing_rounds": 8,
+                "pricing_skipped": true,
+                "search_directions": 0,
+                "proposed_directions": 0,
+                "pricing_reviews": 0,
+                "target_prices": [
+                  "0"
+                ]
+              }
+            },
+            "optimality_gap": 0,
+            "lower_bound_certificate": {
+              "schema": "robustband.review_lower_bound/v1",
+              "problem_digest": "3af83bb3b39dd79209b152302f9b5c61d17c20a63c959b2ec3b79bfaf22b0d75",
+              "epsilon": "1/10",
+              "reviewed": {},
+              "target_prices": {
+                "micro": "0"
+              },
+              "retained_upper_bound": "10",
+              "query_lower_bound": 0
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -77,9 +77,15 @@ For the Windows portable artifact, install PyInstaller and run
 Publish the ZIP only after that acceptance check. Editable source editions remain
 separate from the bundled core executable.
 
-The first public 1.0.0 release uses a newly initialized `robustband-public`
+After committing the reviewed release tree, `python submission/build_editions.py`
+builds the professional and generalized source ZIPs from that exact Git commit.
+Each `BUNDLE.json` identifies the source commit and hashes the profile-specific
+files. Both editions use the same scoring implementation.
+
+The first public 1.0.0 release used a newly initialized `robustband-public`
 repository containing reviewed files, without importing earlier development Git
-history. The original development repository remains private. Review all source
+history. Since 1.0.2, that public repository is named `robustband`; the original
+development repository is named `robustband-dev` and remains private. Review all source
 and distribution members before publishing; in particular exclude internal
 preparation materials, credentials, local source paths and private datasets.
 

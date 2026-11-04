@@ -6,7 +6,7 @@ set of built-in scoring protocols whose reported numbers are reproducible by a t
 party. Most of the rules below exist to keep that property intact.
 
 Issues and pull requests are welcome on
-<https://github.com/wicalgambles-jpg/robustband-public>. For security or conduct concerns, email
+<https://github.com/wicalgambles-jpg/robustband>. For security or conduct concerns, email
 the maintainer instead of opening a public issue.
 
 ---
@@ -42,7 +42,7 @@ the maintainer instead of opening a public issue.
 ## 2. Development setup
 
 ```bash
-git clone https://github.com/wicalgambles-jpg/robustband-public.git
+git clone https://github.com/wicalgambles-jpg/robustband.git
 cd robustband
 python -m pip install -e ".[dev]"      # offline machines: --no-build-isolation
 ```
@@ -188,3 +188,13 @@ any released source archive.
 
 Maintainer: Zengzhao Gao (Harbin Engineering University) — wicalgambles@gmail.com —
 ORCID [0009-0007-9138-4642](https://orcid.org/0009-0007-9138-4642).
+
+## 11. Release acceptance
+
+For each release, review functionality, reliability, usability, efficiency,
+maintainability and portability. Record executed checks separately from pending
+or unavailable evidence. Automated browser flows do not establish unfamiliar-human
+usability. Run `submission/check_quality.py`, distribution/converter/portable checks
+where supported, and `experiments/measure_resources.py`; link versioned receipts
+and describe the measured workload and environment. This project checklist is not
+external standards certification.

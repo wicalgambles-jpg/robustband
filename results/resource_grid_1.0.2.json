@@ -1,0 +1,1209 @@
+{
+  "schema": "robustband.resource_grid/v2",
+  "software_version": "1.0.2",
+  "scope": "Pipeline validation on the local archive. Scale gates are expected to fail; the grid records the shortfall.",
+  "manifest": {
+    "path": "experiments/resource_sources.json",
+    "sha256_lf": "da31f896fe4e22ce3740142d5d9d730f3114fdc0f866e4b04ddd21fc27ff30b3"
+  },
+  "files": {
+    "examples/data/evalscope/qwen-plus/gsm8k_main.jsonl": {
+      "sha256_lf": "def29e2a8707e134663bffadba52e205219933d68536eb565331e9106cb93e24",
+      "bytes_lf": 46423
+    },
+    "examples/data/evalscope/qwen3-max/gsm8k_main.jsonl": {
+      "sha256_lf": "ea10a3988d66cb9afbf4f90d37f9f95c1ee55d22e82ccf4e8f0a69be41e2969e",
+      "bytes_lf": 42830
+    },
+    "demo/data/Qwen0.5B_cot.jsonl": {
+      "sha256_lf": "40a58dc9bbf5faa79ca2e6930522cf37afd12e8b0776375f73d5a042945e38eb",
+      "bytes_lf": 1079813
+    },
+    "examples/data/evalscope/qwen-plus/ifeval_default.jsonl": {
+      "sha256_lf": "6807df532b144963450e577ad5983dfd4c2c768011882f6cd7511d6be62177e8",
+      "bytes_lf": 88036
+    },
+    "examples/data/evalscope/qwen3-max/ifeval_default.jsonl": {
+      "sha256_lf": "4a8471719d3ae94bca28db308b3bd817615b7cc48f4269f470046c08d04a1775",
+      "bytes_lf": 72499
+    }
+  },
+  "summary": {
+    "models": [
+      "Qwen2.5-0.5B-cot",
+      "qwen-plus",
+      "qwen3-max"
+    ],
+    "n_models": 3,
+    "n_benchmarks": 3,
+    "paired_pairs": 2,
+    "flipping_pairs": 0,
+    "max_width_float": 1.0
+  },
+  "gates": {
+    "R-B1a_models": {
+      "required": 8,
+      "actual": 3,
+      "pass": false
+    },
+    "R-B1b_benchmarks": {
+      "required": 4,
+      "actual": 3,
+      "pass": false
+    },
+    "R-B2_width": {
+      "required": "1/10",
+      "benchmarks_passing": 3,
+      "benchmarks": 3,
+      "pass": true
+    },
+    "R-B3_ranking_flip": {
+      "flipping_pairs": 0,
+      "benchmarks_with_flip": 0,
+      "pass": false
+    },
+    "R-B4_recompute": {
+      "exact_rationals": true,
+      "verify_mode": "--verify",
+      "evidence": "the grid is recomputed from the manifest and files; --verify compares byte-identical JSON",
+      "pass": true
+    },
+    "R-B5_decision_change": {
+      "evaluated": false,
+      "reason": "no paired decision task in this archive",
+      "pass": null
+    }
+  },
+  "benchmarks": [
+    {
+      "id": "gsm8k_evalscope_review",
+      "kind": "raw_output",
+      "source": "evalscope examples/viz (Apache-2.0, pinned in examples/data/evalscope/manifest.json)",
+      "models": [
+        "qwen-plus",
+        "qwen3-max"
+      ],
+      "per_model": {
+        "qwen-plus": {
+          "lo": "0",
+          "hi": "1",
+          "width": "1",
+          "min_protocol": "strict_exact|exact_match|micro",
+          "max_protocol": "strict_exact|contains|micro",
+          "width_float": 1.0,
+          "items": 10
+        },
+        "qwen3-max": {
+          "lo": "0",
+          "hi": "1",
+          "width": "1",
+          "min_protocol": "strict_exact|exact_match|micro",
+          "max_protocol": "strict_exact|contains|micro",
+          "width_float": 1.0,
+          "items": 10
+        }
+      },
+      "common_items": 10,
+      "pairs": [
+        {
+          "model_a": "qwen-plus",
+          "model_b": "qwen3-max",
+          "common_items": 10,
+          "exact_band": [
+            "0",
+            "1/10"
+          ],
+          "flips": false,
+          "support": 12,
+          "protocols": 80
+        }
+      ],
+      "rankings": [
+        {
+          "protocol": "boxed|contains|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|contains|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|contains|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|contains|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|exact_match|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|exact_match|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|exact_match|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|exact_match|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|f1_token|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|f1_token|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|f1_token|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|f1_token|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|numeric_tol|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|numeric_tol|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|numeric_tol|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "boxed|numeric_tol|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "first_num|contains|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|contains|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|contains|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "first_num|contains|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|exact_match|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|exact_match|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|exact_match|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "first_num|exact_match|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|f1_token|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|f1_token|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|f1_token|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "first_num|f1_token|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|numeric_tol|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|numeric_tol|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "first_num|numeric_tol|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "first_num|numeric_tol|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "last_line_num|contains|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|contains|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|contains|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|contains|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|exact_match|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|exact_match|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|exact_match|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|exact_match|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|f1_token|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|f1_token|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|f1_token|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|f1_token|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|numeric_tol|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|numeric_tol|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|numeric_tol|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_line_num|numeric_tol|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|contains|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|contains|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|contains|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|contains|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|exact_match|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|exact_match|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|exact_match|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|exact_match|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|f1_token|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|f1_token|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|f1_token|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|f1_token|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|numeric_tol|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|numeric_tol|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|numeric_tol|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "last_num|numeric_tol|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|contains|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|contains|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|contains|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|contains|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|exact_match|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|exact_match|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|exact_match|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|exact_match|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|f1_token|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|f1_token|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|f1_token|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|f1_token|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|numeric_tol|macro_class",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|numeric_tol|macro_len",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|numeric_tol|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "strict_exact|numeric_tol|micro",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        }
+      ],
+      "family": {
+        "parses": [
+          "strict_exact",
+          "first_num",
+          "last_num",
+          "last_line_num",
+          "boxed"
+        ],
+        "metrics": [
+          "exact_match",
+          "contains",
+          "f1_token",
+          "numeric_tol"
+        ],
+        "aggs": [
+          "micro",
+          "macro_class",
+          "macro_len",
+          "median"
+        ]
+      }
+    },
+    {
+      "id": "gsm8k_full_test",
+      "kind": "demo_raw",
+      "source": "frozen Qwen2.5-0.5B-Instruct greedy outputs shipped with the repository",
+      "models": [
+        "Qwen2.5-0.5B-cot"
+      ],
+      "per_model": {
+        "Qwen2.5-0.5B-cot": {
+          "lo": "0",
+          "hi": "622/1319",
+          "width": "622/1319",
+          "min_protocol": "strict_exact|exact_match|micro",
+          "max_protocol": "strict_exact|contains|micro",
+          "width_float": 0.471569,
+          "items": 1319
+        }
+      },
+      "common_items": 0,
+      "pairs": [],
+      "rankings": [],
+      "family": {
+        "parses": [
+          "strict_exact",
+          "first_num",
+          "last_num",
+          "last_line_num",
+          "boxed"
+        ],
+        "metrics": [
+          "exact_match",
+          "contains",
+          "f1_token",
+          "numeric_tol"
+        ],
+        "aggs": [
+          "micro",
+          "macro_class",
+          "macro_len",
+          "median"
+        ]
+      }
+    },
+    {
+      "id": "ifeval_evalscope_review",
+      "kind": "recorded_scores",
+      "source": "evalscope examples/viz (Apache-2.0, pinned in examples/data/evalscope/manifest.json)",
+      "models": [
+        "qwen-plus",
+        "qwen3-max"
+      ],
+      "per_model": {
+        "qwen-plus": {
+          "lo": "9/10",
+          "hi": "1",
+          "width": "1/10",
+          "min_protocol": "prompt_level_strict|mean",
+          "max_protocol": "prompt_level_strict|median",
+          "width_float": 0.1,
+          "items": 10
+        },
+        "qwen3-max": {
+          "lo": "4/5",
+          "hi": "1",
+          "width": "1/5",
+          "min_protocol": "prompt_level_strict|mean",
+          "max_protocol": "prompt_level_strict|median",
+          "width_float": 0.2,
+          "items": 10
+        }
+      },
+      "common_items": 10,
+      "pairs": [
+        {
+          "model_a": "qwen-plus",
+          "model_b": "qwen3-max",
+          "common_items": 10,
+          "exact_band": [
+            "0",
+            "1/10"
+          ],
+          "flips": false,
+          "support": 2,
+          "protocols": 8
+        }
+      ],
+      "rankings": [
+        {
+          "protocol": "inst_level_loose|mean",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "inst_level_loose|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "inst_level_strict|mean",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "inst_level_strict|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "prompt_level_loose|mean",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "prompt_level_loose|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        },
+        {
+          "protocol": "prompt_level_strict|mean",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 2
+          },
+          "leaders": [
+            "qwen-plus"
+          ]
+        },
+        {
+          "protocol": "prompt_level_strict|median",
+          "ranks": {
+            "qwen-plus": 1,
+            "qwen3-max": 1
+          },
+          "leaders": [
+            "qwen-plus",
+            "qwen3-max"
+          ]
+        }
+      ],
+      "family": {
+        "metrics": [
+          "prompt_level_strict",
+          "inst_level_strict",
+          "prompt_level_loose",
+          "inst_level_loose"
+        ],
+        "aggs": [
+          "mean",
+          "median"
+        ]
+      }
+    }
+  ],
+  "limits": [
+    "Scores are conditional on the archived outputs, the declared protocol family and the reference answers.",
+    "Bands are ranges over protocols, not confidence intervals.",
+    "The archive is small (10 paired items per evalscope benchmark); widths and flips are pipeline evidence, not population estimates.",
+    "Upstream per-item scores for instruction following are reused as recorded; this script does not re-run the judge.",
+    "Redistribution of the archived outputs requires the upstream licenses to be honoured."
+  ],
+  "grid_sha256": "7d2ad2a0df0226f9d7c5132f123872fa4242fff98a91343ff1bf59ba26b8df63"
+}

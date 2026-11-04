@@ -110,7 +110,7 @@ def main(argv):
         page = out / f"{name}.html"
         document = pydoc.html.document(mod, name)
         relative = pathlib.Path(mod.__file__).resolve().relative_to(root).as_posix()
-        source_url = "https://github.com/wicalgambles-jpg/robustband-public/blob/main/" + relative
+        source_url = "https://github.com/wicalgambles-jpg/robustband/blob/main/" + relative
         document = re.sub(r'<a href="file:[^"]*">.*?</a>',
                           '<a href="'+source_url+'">'+escape(relative)+'</a>', document)
         page.write_text(document, encoding="utf-8")

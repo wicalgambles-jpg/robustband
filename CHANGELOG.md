@@ -3,6 +3,20 @@
 All notable changes to `robustband` are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.2] - 2026-11-04
+
+- Fix R48: paired-text audits reject unknown CSV columns and JSONL keys at the
+  Python, CLI and local HTTP entry points, with actionable field names.
+- Keep explicit column omission in the converter, recorded in its manifest and
+  checked by canonical reload; optional class and length grouping fields remain supported.
+- Add regression checks for rejection, output protection and explicit conversion.
+- Add repeatable fresh-process timing and OS peak resident-memory measurements.
+- Organize release acceptance by six software quality characteristics, retaining
+  unmeasured human usability and browser/platform limitations as open evidence gaps.
+- Rename the public repository to `robustband` and the private development
+  repository to `robustband-dev`; update active links and CI artifact versions.
+- Preserve the frozen scoring algorithms and previous release evidence.
+
 ## [1.0.1] - 2026-10-22
 
 - Fix FR-01: resource-grid v2 records `bytes_lf` and `sha256_lf` from identical

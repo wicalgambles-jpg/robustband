@@ -1,0 +1,14 @@
+{
+  "schema": "robustband.portable_build/v1",
+  "version": "1.0.2",
+  "platform": "Windows-11-10.0.22631-SP0",
+  "python": "3.13.0",
+  "format": "PyInstaller onedir",
+  "archive": "robustband-1.0.2-windows-x64.zip",
+  "sha256": "69d612c6b2ac3cf34e33b7761e15ea17a9cc54af00273082af8416614960d757",
+  "bytes": 8906035,
+  "runtime_python_installation_required": false,
+  "optional_numpy_cupy_bundled": false,
+  "source_files_included_for_replay": true,
+  "signed": false
+}

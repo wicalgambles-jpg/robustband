@@ -12,7 +12,7 @@ For the browser interface and validated paired CSV/JSONL, start with the
 for custom workflows and larger datasets.
 
 ```bash
-git clone https://github.com/wicalgambles-jpg/robustband-public.git
+git clone https://github.com/wicalgambles-jpg/robustband.git
 cd robustband
 python -m pip install -e .            # add --no-build-isolation on an air-gapped machine
 python -m robustband ui               # local browser interface; no code to write
@@ -228,7 +228,7 @@ if band.verdict == "UNIDENTIFIABLE":
 
 ```yaml
 # .github/workflows/leaderboard.yml (your repository)
-- run: python -m pip install git+https://github.com/wicalgambles-jpg/robustband-public.git
+- run: python -m pip install git+https://github.com/wicalgambles-jpg/robustband.git
 - run: python scripts/band_gate.py --strict
 ```
 

@@ -35,6 +35,10 @@ def _load(text, domain, format, mapping, edition):
         return [row for rows in groups.values() for row in rows]
     if mapping is not None:
         raise ValueError('Column mapping applies to numeric scores only.')
+    if domain == 'text':
+        # Conversion owns the explicit drop policy and records omitted columns.
+        from .workflow import load_paired
+        return load_paired(text, format, allow_extra=True)
     return adapter.load(text, format)
 
 

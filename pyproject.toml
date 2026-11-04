@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "robustband"
-version = "1.0.1"
+version = "1.0.2"
 description = "Audit benchmarking claims across declared scoring protocols with exact bands, witnesses and experimental review planning."
 readme = "README.md"
 requires-python = ">=3.9"
@@ -36,9 +36,9 @@ robustband = "robustband.cli:main"
 dev = ["pytest>=7", "coverage>=7"]
 
 [project.urls]
-Homepage = "https://github.com/wicalgambles-jpg/robustband-public"
-Repository = "https://github.com/wicalgambles-jpg/robustband-public"
-Issues = "https://github.com/wicalgambles-jpg/robustband-public/issues"
+Homepage = "https://github.com/wicalgambles-jpg/robustband"
+Repository = "https://github.com/wicalgambles-jpg/robustband"
+Issues = "https://github.com/wicalgambles-jpg/robustband/issues"
 
 [tool.setuptools]
 packages = ["robustband"]

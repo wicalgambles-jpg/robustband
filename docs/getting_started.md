@@ -60,7 +60,7 @@ fails, copy the complete printed URL, including the fragment after `#`.
 
 ```bash
 # Install a downloaded wheel offline, outside the source checkout:
-python -m pip install --no-index --no-deps robustband-1.0.1-py3-none-any.whl
+python -m pip install --no-index --no-deps robustband-1.0.2-py3-none-any.whl
 python -m robustband ui
 ```
 
@@ -110,7 +110,10 @@ question-1,What is 6 times 7?,42,the answer is 42,the answer is 7,arithmetic,sho
 ```
 
 CSV quoting supports commas and multiline outputs. Keep the model outputs verbatim.
-UTF-8 is required; a byte order mark is accepted. Paired JSONL uses the same fields:
+UTF-8 is required; a byte order mark is accepted. Only the five required fields and
+optional `class,len_bucket` are accepted by text audits. Correct misspelled fields
+or explicitly remove extra columns through the converter; review its omission manifest.
+Paired JSONL uses the same fields:
 
 ```json
 {"sample_id":"question-1","prompt":"What is 6 times 7?","gold":"42","output_a":"the answer is 42","output_b":"the answer is 7","class":"arithmetic","len_bucket":"short"}
