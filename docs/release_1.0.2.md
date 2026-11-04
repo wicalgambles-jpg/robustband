@@ -80,6 +80,12 @@ against the previous review, whose measurement scope differed.
 
 ## Repository names and evidence limits
 
+The first remote run passed 13 of 14 jobs; Ubuntu 26.04 could not install Python
+3.9, so that job never executed the tests. The regression matrix now pins Ubuntu
+24.04 while UI, converter and distribution jobs keep `ubuntu-latest`. CI archives
+fresh receipts only after successful checks; committed local receipts are not
+substituted when environment setup fails.
+
 The public repository is now `wicalgambles-jpg/robustband`; the original development
 history remains in private `wicalgambles-jpg/robustband-dev`. The rename preserves
 each repository's history and visibility. New public changes use the already

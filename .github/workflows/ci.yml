@@ -20,7 +20,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
+        # Ubuntu 26.04 (latest) has no setup-python 3.9 build. Keep the supported
+        # minimum Python on 24.04; UI/converter/distribution jobs still use latest.
+        os: [ubuntu-24.04, windows-latest, macos-latest]
         python-version: ["3.9", "3.11", "3.13"]
     steps:
       - uses: actions/checkout@v4
@@ -40,14 +42,15 @@ jobs:
         run: python submission/check_quality.py
       - name: Measure fresh-process runtime and OS peak resident memory
         run: python -S experiments/measure_resources.py
+      - name: Stage receipts only after both checks succeeded
+        run: python -c "from pathlib import Path; import shutil; p=Path('build/ci-evidence'); p.mkdir(parents=True,exist_ok=True); [shutil.copyfile(Path('results')/n,p/n) for n in ('quality_gate_1.0.2.json','resource_measurement_1.0.2.json')]"
       - name: Keep quality and newline-portability evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: quality-${{ matrix.os }}-py${{ matrix.python-version }}
           path: |
-            results/quality_gate_1.0.2.json
-            results/resource_measurement_1.0.2.json
+            build/ci-evidence/
             build/resource_portability_1.0.2.json
             build/pytest.xml
             build/quality-gate-*.log

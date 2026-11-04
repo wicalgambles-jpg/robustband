@@ -16,6 +16,8 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 - Rename the public repository to `robustband` and the private development
   repository to `robustband-dev`; update active links and CI artifact versions.
 - Preserve the frozen scoring algorithms and previous release evidence.
+- Pin the test matrix to Ubuntu 24.04 for Python 3.9 availability; stage CI
+  receipts only after successful execution, excluding committed fallback receipts.
 
 ## [1.0.1] - 2026-10-22
 
