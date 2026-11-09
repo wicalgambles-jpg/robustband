@@ -5,7 +5,7 @@
   "platform": "Windows-11-10.0.22631-SP0",
   "python": "3.13.0",
   "tests": {
-    "tests": 520,
+    "tests": 521,
     "failures": 0,
     "errors": 0,
     "skipped": 0
@@ -177,6 +177,7 @@
     "tests/test_engine.py": "54dcca848a0e5913b59076005d717fd125ada0d82b6fa3f3ff9a692083bcaaa6",
     "tests/test_evalscope.py": "2fd41bf251462effad7e1d5efe626f12845830dbe30bc2e063b973b37ffc644e",
     "tests/test_http_resilience.py": "09846081494a0db7b78e952ee81219c89befdb25616f9602df9fee129840a98a",
+    "tests/test_import_fixtures.py": "7f38b96c2b85ff35d2882abf061b37051e7710dd3e7f989ab77836c60bfeab79",
     "tests/test_import_http.py": "e5753d779d3f3f2031dddf22c1a78f4e810f046934e1d139eb342fe94b71f7bc",
     "tests/test_importers.py": "2020c2c4615069147a9863a4adda923a2a40e3942e5f2dac70b3fc58b7f82787",
     "tests/test_ingestion_limits.py": "f5f83a104397203bfc4457c64058acf475eadff3031ee398807b4d9aac1f4fa7",
@@ -225,7 +226,7 @@
     "experiments/compiled_resources.py": "2335eaf76f87d184b2631359d8582bdf34e1f802696556602efb840171467d96",
     "experiments/external_cases.py": "6a2dfdc0f11f54831d2f5d3aa7c7cee075d9d6d34127799c001a8d96a3c3cfeb",
     "experiments/fetch_external_cases.py": "5873cb0d8cd2f9f15f70e19d682fc92153759f19b383210697f56252adf661ea",
-    "experiments/import_fixtures.py": "2e86003b7b51eaa6c3151aa0700e28c6c29a93a39eccdf7d6b86c78ae8c003cf",
+    "experiments/import_fixtures.py": "b605df8636e36c5d140a74f2b7ca0aa9d3c11eda528031a606cc7c91244593a3",
     "experiments/measure_resources.py": "6e85bd2de2be495834641e600f8c7d842dd85665f6eba3b6470f353158facb67",
     "experiments/resource_grid.py": "11bed68fc7f01e580400b12ea8e889e43954d32f9c5c0ccde45eee7ae181bc5d",
     "experiments/review_budget.py": "eb236b0ced854518c262ad6b35da37bb296f2a79c1b07898df507dc323e03c32",
@@ -240,7 +241,7 @@
     "submission/check_quality.py": "60551570e1307b1a4a6505bc42c4188938b26ceb106d835fe96f1b7aa1e99eea",
     "submission/portable_entry.py": "acace887c27e7567a3f997f383320d0a37faebbdd60f421fe41cdfc36b242a3e",
     "submission/prepare_public_snapshot.py": "f5311bf098244a778c48e79460a9f9232c7d897b64172b630cf8cfa437efd65a",
-    "submission/verify_portable.py": "45aa280d876f00d579d7a5c7ba991c156a8e4eab398506cdb833870a99d08e95",
+    "submission/verify_portable.py": "9aa1f80d608a0be9db03396c6ba6adec31bdb4736dacae1582a7ec1f5bf994d5",
     "submission/verify_release.py": "6a63189b543bf6b585884a67dda61d9ae8f97294f0cb67d7097bde5aec98a880"
   },
   "limits": "Automated local checks; not independent human scientific validation or remote CI evidence"

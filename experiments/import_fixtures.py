@@ -64,7 +64,7 @@ def main():
     path.write_text("sample_id\tmodel\tgold\toutput\nq1\tA\t42\t42\nq1\tB\t42\t7\n", encoding="utf-8")
     cases.append(dict(name="ranking long table", files=[str(path)], n=1, band=["1", "1"], matrix=True))
     (root / "cases.json").write_text(json.dumps(cases, indent=2), encoding="utf-8")
-    print(str(root))
+    print(json.dumps({"fixtures": str(root)}, ensure_ascii=True))
 
 
 if __name__ == "__main__":

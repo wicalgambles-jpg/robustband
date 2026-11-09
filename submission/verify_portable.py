@@ -37,7 +37,8 @@ def main():
         cold=time.perf_counter()-start
         checked=['version in path containing Unicode and spaces; system-only PATH']
         fixtures=base/'fixtures'
-        subprocess.run([sys.executable,'-S',str(ROOT/'experiments/import_fixtures.py'),str(fixtures)],check=True,capture_output=True)
+        prepared=subprocess.run([sys.executable,'-S',str(ROOT/'experiments/import_fixtures.py'),str(fixtures)],capture_output=True)
+        assert prepared.returncode==0, prepared.stderr.decode('utf-8','replace')
         import_cases=json.loads((fixtures/'cases.json').read_text(encoding='utf-8'))
         for domain in ('text','scores','segmentation'):
             run('demo','--domain',domain,'--output',domain)

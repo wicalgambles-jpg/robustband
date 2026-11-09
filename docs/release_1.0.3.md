@@ -72,9 +72,9 @@ current remote platform checks separately.
 
 ## Executed local results
 
-- Complete quality gate: 520 tests, zero failures/errors/skips; 2769/2769 package
+- Complete quality gate: 521 tests, zero failures/errors/skips; 2769/2769 package
   statements covered. Frozen scoring source identities match the existing record.
-- Python 3.9: 520 tests passed. Python 3.13: the complete quality gate above.
+- Python 3.9: 521 tests passed. Python 3.13: the complete quality gate above.
 - Seven Edge 148 browser variants: 122 checks, zero script exceptions, including
   actual file drops, result-bundle replay, sequential archive pairing, a complete
   official subject, mobile width, mismatched-cohort rejection, and agreement
@@ -127,3 +127,8 @@ actual HTTP interface with system-only PATH: 410 items, counts 134 and 173,
 exact band `[-39/410, -39/410]`, and verified result-bundle replay. One local run
 took 2.68 seconds for the import request and peaked at 158.1 MiB server RSS.
 This is a single measured archive workload, not a general memory or latency bound.
+
+A remote Windows CI run exposed a Western-console encoding failure in the test
+fixture generator when printing a Unicode path. Its status output is now ASCII
+JSON, with a regression under `PYTHONIOENCODING=cp1252`; archive and workbook
+content remain UTF-8. The failed CI run and local reproduction are retained.
