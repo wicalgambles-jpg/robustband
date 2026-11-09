@@ -3,6 +3,23 @@
 All notable changes to `robustband` are documented here.
 This project adheres to [Semantic Versioning](https://semver.org/).
 
+## [1.0.3] - 2026-11-09
+
+- Preserve Unicode NEL, line separator and paragraph separator characters inside
+  JSONL strings; only LF/CRLF delimit records. CSV-to-JSONL roundtrips retain them.
+- Reject CLI report destinations that would overwrite their input, policy, plan
+  or mapping files before writing any report.
+- Protect conversion mapping files from output/manifest collisions, including
+  explicit overwrite requests.
+- Check ranking preview grouping completeness across every sample; correct HTML
+  direction labels for nonnegative bands with a zero lower endpoint.
+- Preserve JSON number types when importing exact scores: decimal scores stay
+  exact, while floating IDs and numeric text/group metadata are rejected.
+- Build editable edition instructions using the current version's release notes.
+- Record TestAgent-guided local acceptance and explicit platform/usability gaps.
+- Finish the authenticated stop acknowledgement before setting the UI exit flag;
+  still honor a valid stop request when the reply connection has disconnected.
+
 ## [1.0.2] - 2026-11-04
 
 - Fix R48: paired-text audits reject unknown CSV columns and JSONL keys at the

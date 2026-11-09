@@ -45,7 +45,7 @@ def render_matrix(report):
             label = "翻转 / flips "
         elif hi == 0:
             label = "含并列 / ties "
-        elif lo > 0:
+        elif lo >= 0:
             label = "领先 / ahead "
         else:
             label = "落后 / behind "

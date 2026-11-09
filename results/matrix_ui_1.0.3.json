@@ -1,0 +1,18 @@
+{
+  "schema": "robustband.matrix_browser/v1",
+  "software_version": "1.0.3",
+  "browser": "Edg/148.0.3967.54",
+  "checked": [
+    "ranking page loads with session token",
+    "example renders verdict and tables",
+    "pair labels and protocol rows present",
+    "language toggle updates text",
+    "nonnegative zero-endpoint band agrees in browser and exported HTML"
+  ],
+  "script_exceptions": [],
+  "independent_human_user": false,
+  "source_sha256_lf": {
+    "robustband/matrix.html": "16a73ccbf5879443a6095a6300dfc488af17553e96fa4f5f6aa5db938997ba3c",
+    "experiments/matrix_browser_smoke.cjs": "1cb8d52c131225eda0c77f8cf1d7584edfb237887e288f9df8127d6143a52e07"
+  }
+}

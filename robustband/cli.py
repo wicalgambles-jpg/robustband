@@ -94,6 +94,9 @@ def main(argv=None):
             return 0
         if args.command == 'convert':
             from .convert import convert_table, save_conversion
+            if args.mapping and args.mapping.resolve() in {
+                    args.output.resolve(), args.output.with_name(args.output.name + '.manifest.json').resolve()}:
+                raise ValueError('Conversion output cannot overwrite a mapping source file; choose a different output path.')
             if args.input.stat().st_size > MAX_BYTES:
                 raise ValueError('Input exceeds 4 MiB; split the file or use the Python API.')
             text = args.input.read_text(encoding='utf-8')
@@ -130,6 +133,11 @@ def main(argv=None):
             domain = get_domain(args.domain, args.edition)
             report = audit_domain(domain.id, domain.metadata["example"], domain.metadata["example_format"])
         else:
+            sources = [args.input] + [getattr(args, name) for name in ("plan", "mapping", "policy")
+                                      if getattr(args, name, None) is not None]
+            targets = {(Path(args.output) / name).resolve() for name in ("report.json", "report.html")}
+            if any(source.resolve() in targets for source in sources):
+                raise ValueError("Report output cannot overwrite a source file; choose a different output directory.")
             if args.input.stat().st_size > MAX_BYTES:
                 raise ValueError("Input exceeds 4 MiB; split the file or use the Python API for larger datasets.")
             raw = args.input.read_bytes()

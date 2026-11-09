@@ -1,6 +1,7 @@
 # SPDX-License-Identifier: MIT
 """Shared bounded table ingestion; semantic validation belongs to each adapter."""
 import csv
+from decimal import Decimal, InvalidOperation
 import io
 import json
 
@@ -69,13 +70,15 @@ def read_table(text, format, required=(), max_bytes=MAX_BYTES, max_rows=MAX_ROWS
         except csv.Error as exc:
             raise ValueError("Invalid CSV near line %d: %s" % (getattr(reader, "line_num", 0), exc)) from exc
     elif format == "jsonl":
-        for number, line in enumerate(text.splitlines(), 1):
+        # JSON Lines uses LF/CRLF. U+0085/U+2028/U+2029 are valid string
+        # content, so str.splitlines() would split and corrupt valid records.
+        for number, line in enumerate(text.split("\n"), 1):
             if line.strip():
                 try:
                     _json_depth(line)
-                    rows.append(json.loads(line, parse_float=str if exact_decimals else float,
+                    rows.append(json.loads(line, parse_float=Decimal if exact_decimals else float,
                                            parse_constant=_json_constant, object_pairs_hook=_json_object))
-                except (ValueError, RecursionError) as exc:
+                except (ValueError, RecursionError, InvalidOperation) as exc:
                     raise ValueError("JSONL line %d: %s" % (number, exc)) from exc
                 if len(rows) > max_rows:
                     raise ValueError("Use at most %d paired records per audit; split the file or use the Python API."

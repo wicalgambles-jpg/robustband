@@ -140,8 +140,11 @@ class _Handler(BaseHTTPRequestHandler):
             self._send(400, {"error": str(exc)})
             return
         if self.path == "/api/stop":
-            self.server.stop_requested = True
-            self._send(200, {"stopped": True})
+            try:
+                self._send(200, {"stopped": True})
+            finally:
+                # The UI loop may exit the process as soon as this flag is set.
+                self.server.stop_requested = True
             return
         if self.path not in ("/api/preview", "/api/audit", "/api/convert", "/api/matrix/preview", "/api/matrix/audit",
                              "/api/decision/columns", "/api/decision/preview", "/api/decision/audit", "/api/decision/plan"):

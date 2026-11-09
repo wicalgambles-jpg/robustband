@@ -93,6 +93,16 @@ async function main() {
   const findingAfter = await evaluate("document.getElementById('finding').textContent");
   assert(before !== after && findingBefore !== findingAfter && findingAfter.length > 0, 'Language toggle did not update the page');
   checked.push('language toggle updates text');
+  const zeroEndpointText = 'sample_id,model,gold,output\nq1,A,42,42\nq1,B,42,42 then 7\n';
+  await evaluate(`(async()=>{
+    const value=await api('/api/matrix/audit',{text:${JSON.stringify(zeroEndpointText)},format:'csv'});
+    window.zeroEndpointReport=value;
+    render(value.report,value.html,value.json);
+  })()`);
+  assert(await evaluate("zeroEndpointReport.report.pairs[0].exact_band.join(',')==='0,1'"), 'Hand-checked zero-endpoint band missing');
+  assert(await evaluate("!zeroEndpointReport.html.includes('behind [0, 1]') && zeroEndpointReport.html.includes('ahead [0, 1]')"), 'Exported HTML reverses a nonnegative band');
+  assert(await evaluate("/ahead|领先/.test(document.getElementById('pairTable').textContent) && !/behind|落后/.test(document.getElementById('pairTable').textContent)"), 'Browser direction disagrees with exported HTML');
+  checked.push('nonnegative zero-endpoint band agrees in browser and exported HTML');
   assert(exceptions.length === 0, 'Script exceptions: ' + exceptions.join(', '));
 
   const version = (await (await fetch(base.split('#')[0] + 'api/options')).json()).version;

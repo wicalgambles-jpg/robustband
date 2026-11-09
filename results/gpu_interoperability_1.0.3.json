@@ -1,0 +1,77 @@
+{
+  "schema": "robustband.gpu_interoperability/v1",
+  "version": "1.0.3",
+  "date": "2026-11-09",
+  "python": "3.13.0",
+  "cupy": "14.2.0",
+  "numpy": "2.5.4",
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "cuda_runtime": 12090,
+  "cuda_driver_api": 13040,
+  "driver": "616.56",
+  "cases": [
+    {
+      "classes": 2,
+      "shape": [
+        37,
+        53
+      ],
+      "ignored_pixels": 5,
+      "cuda_argmax_equals_cpu": true,
+      "cuda_counts_equals_cpu_loop": true,
+      "converted_counts_equal": true,
+      "exact_audit_equals_cpu": true,
+      "replay_verified": true,
+      "roundtrip_verified": true,
+      "exact_band": [
+        "-6733099680/926004747653",
+        "-6733099680/926004747653"
+      ]
+    },
+    {
+      "classes": 8,
+      "shape": [
+        37,
+        53
+      ],
+      "ignored_pixels": 5,
+      "cuda_argmax_equals_cpu": true,
+      "cuda_counts_equals_cpu_loop": true,
+      "converted_counts_equal": true,
+      "exact_audit_equals_cpu": true,
+      "replay_verified": true,
+      "roundtrip_verified": true,
+      "exact_band": [
+        "-205710304922055585154205071/157769559138056038679041905600",
+        "-205710304922055585154205071/157769559138056038679041905600"
+      ]
+    },
+    {
+      "classes": 64,
+      "shape": [
+        37,
+        53
+      ],
+      "ignored_pixels": 5,
+      "cuda_argmax_equals_cpu": true,
+      "cuda_counts_equals_cpu_loop": true,
+      "converted_counts_equal": true,
+      "exact_audit_equals_cpu": true,
+      "replay_verified": true,
+      "roundtrip_verified": true,
+      "exact_band": [
+        "-45776038298140151/178081725707493543936",
+        "-45776038298140151/178081725707493543936"
+      ]
+    }
+  ],
+  "passed": 3,
+  "device_pool_peak_reserved_bytes": 1226752,
+  "source_sha256_lf": {
+    "experiments/validate_gpu.py": "5f451a4720e37a2b7cbd3239c038f7dfe7c90e4638ea9d91e496603460b88c28",
+    "examples/prepare_segmentation_npz.py": "59d8cb084567d55da2cf5b73babeab4d247f97c77a1b7f253f9cfd0efeed6a85",
+    "robustband/convert.py": "8dc754098c062afe963d7319208f3ea84c25364b5cb5f3fd7fa5faba3d79c549",
+    "robustband/segmentation.py": "073151a0ceea34e83c9f166c7be14105ec6c9256755b679c408aeb86110b06e5"
+  },
+  "scope": "Actual CUDA argmax and bincount on this GPU; synthetic integer caches, conversion and exact CPU audit replay. No training, inference benchmark or universal GPU support claim."
+}

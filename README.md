@@ -2,7 +2,11 @@
 
 **Maintainer:** Zengzhao Gao (Harbin Engineering University, China) — wicalgambles@gmail.com
 · ORCID [0009-0007-9138-4642](https://orcid.org/0009-0007-9138-4642)
-· **License:** MIT · **Version:** 1.0.2 · **Zero runtime dependencies** · Python ≥ 3.9
+· **License:** MIT · **Version:** 1.0.3 · **Zero runtime dependencies** · Python ≥ 3.9
+
+**1.0.3 local build:** this version is available in the local source and portable
+bundles. It has not been uploaded as a GitHub release. See the
+[local acceptance notes](docs/release_1.0.3.md).
 
 `robustband` compares two sets of results on the same samples across scoring
 rules you choose. It shows **who leads, the margin range, and whether the conclusion
@@ -50,7 +54,7 @@ The text entry points start with the example's **two explicitly selected protoco
 your own task. The library's default family remains **80 configurations**.
 Both outputs belong to the same record in the new paired format; duplicate IDs,
 missing fields, unknown extra fields and incomplete selected group labels are rejected.
-For intentional extra columns, use the [explicit conversion workflow](docs/release_1.0.2.md#input-contract-change)
+For intentional extra columns, use the [explicit conversion workflow](docs/release_1.0.3.md#input-contract-change)
 and inspect its omission manifest before auditing.
 
 For terminal use and AI-assisted automation:
@@ -123,7 +127,7 @@ The original 0.5.0 release is retained as an archived baseline.
 
 ## Domain applications
 
-Version 1.0.2 provides three adapters through the same browser, report and replay
+Version 1.0.3 provides three adapters through the same browser, report and replay
 workflow. Choose a data card, download its template and declare the target:
 
 | Domain | Input | What is audited |
@@ -192,7 +196,7 @@ an algebraic check on the aggregation code. New independent items can change the
 ```bash
 python -m pip install -e .        # editable, from the repo root
 # Or install the downloaded release wheel offline:
-python -m pip install --no-index --no-deps robustband-1.0.2-py3-none-any.whl
+python -m pip install --no-index --no-deps robustband-1.0.3-py3-none-any.whl
 ```
 
 After installation, `robustband ui` and `python -m robustband ui` are equivalent.
@@ -281,7 +285,7 @@ sequential snapshot `results/tooling_certificate_sequential.json`; Python 3.12+
 uses the compensated snapshot `results/tooling_certificate.json`. The verifier
 detects the sum behavior and strictly replays the corresponding frozen artifact.
 Near-zero bootstrap margins differ between these profiles; see
-[the 1.0.2 evidence](docs/release_1.0.2.md). Exact rational endpoints are checked
+[the 1.0.3 evidence](docs/release_1.0.3.md). Exact rational endpoints are checked
 separately.
 The repository ships the frozen model outputs for rescoring; it does not currently pin
 the model revision and full generation environment needed to reproduce those outputs.
@@ -306,7 +310,7 @@ the edge branches (blank-only parses, `\boxed{}` extraction and fallback, numeri
 equal strings, empty-side F1, macro aggregation without a meta key, empty margins,
 empty family rejection).
 
-**Release checks.** See the [1.0.2 evaluation](docs/release_1.0.2.md) and
+**Release checks.** See the [1.0.3 evaluation](docs/release_1.0.3.md) and
 version-bound receipts in `results/` for executed test and coverage totals. These include paired-input
 validation, report replay, command exits, ranking audits and actual local HTTP requests. Two
 automated browser checks drive the app in headless Chromium (Node ≥ 22): one for the
@@ -423,12 +427,12 @@ See [the offline tutorial and limitations](docs/external_cases.md) and
 [the release and deployment mechanics](docs/github_deployment.md).
 
 ```bash
-python -S experiments/external_cases.py --verify results/external_cases_1.0.2.json
+python -S experiments/external_cases.py --verify results/external_cases_1.0.3.json
 ```
 
 Historical integration and timing reports retain their source hashes.
 Verify the 0.4.0/0.4.1 integration artifacts at their respective tags; current
-commands verify the 1.0.2 artifact with the same numerical readings.
+commands verify the 1.0.3 artifact with the same numerical readings.
 
 ## Reproduce the headline readings
 
@@ -445,7 +449,7 @@ python tooling_certificate.py && python verify_tooling_certificate.py
   title  = {robustband: the score you report is a band, not a point},
   author = {Gao, Zengzhao},
   year   = {2026},
-  version = {1.0.2},
+  version = {1.0.3},
   note   = {Instrument for certified stability bands of benchmarking claims},
   url    = {https://github.com/wicalgambles-jpg/robustband}
 }

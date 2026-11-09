@@ -110,12 +110,11 @@ def load_long(text, format="csv"):
 
 
 def preview_matrix(rows):
-    models, samples, _, by_sample = _normalize(rows)
-    first = by_sample[samples[0]]
+    models, samples, normalized, by_sample = _normalize(rows)
     return {"n_models": len(models), "n_items": len(samples), "models": models,
             "empty_outputs": {model: sum(not by_sample[sample][model]["output"].strip() for sample in samples)
                               for model in models},
-            "group_fields_complete": {column: all(first[model][column].strip() for model in models)
+            "group_fields_complete": {column: all(row[column].strip() for row in normalized)
                                       for column in GROUPS.values()}}
 
 

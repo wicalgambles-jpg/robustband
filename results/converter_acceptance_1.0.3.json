@@ -1,0 +1,40 @@
+{
+  "schema": "robustband.converter_acceptance/v1",
+  "version": "1.0.3",
+  "python": "3.13.0",
+  "numpy": "2.5.4",
+  "checks": [
+    "exact counts, deterministic export and audit replay: 2 classes",
+    "exact counts, deterministic export and audit replay: 8 classes",
+    "exact counts, deterministic export and audit replay: 64 classes",
+    "explicit void mask excludes predictions only at ignored reference pixels",
+    "undeclared void label",
+    "ignore label overlaps class",
+    "all pixels ignored",
+    "floating labels",
+    "negative prediction",
+    "shape mismatch",
+    "object pickle forbidden",
+    "empty array",
+    "reference array mismatch",
+    "source overwrite protection",
+    "existing output protection",
+    "declared suffix mismatch",
+    "class names mismatch",
+    "empty group separator",
+    "class count budget",
+    "pixel budget before allocation",
+    "expanded archive budget",
+    "reloadable output budget",
+    "record budget",
+    "declared array shape bomb",
+    "malformed archive",
+    "sample ID mismatch"
+  ],
+  "passed": 26,
+  "source_sha256_lf": {
+    "experiments/validate_converters.py": "194d85f0c81ecc2b4cff1bb777dbadaba6bdfb78e90408b13def762359f29604",
+    "examples/prepare_segmentation_npz.py": "59d8cb084567d55da2cf5b73babeab4d247f97c77a1b7f253f9cfd0efeed6a85"
+  },
+  "scope": "Synthetic converter acceptance checks; source arrays are disposable and no external dataset is published."
+}

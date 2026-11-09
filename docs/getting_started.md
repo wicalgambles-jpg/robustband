@@ -60,7 +60,7 @@ fails, copy the complete printed URL, including the fragment after `#`.
 
 ```bash
 # Install a downloaded wheel offline, outside the source checkout:
-python -m pip install --no-index --no-deps robustband-1.0.2-py3-none-any.whl
+python -m pip install --no-index --no-deps robustband-1.0.3-py3-none-any.whl
 python -m robustband ui
 ```
 

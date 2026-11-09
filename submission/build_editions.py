@@ -52,7 +52,7 @@ def main():
                 "Double-click start_robustband.cmd to start this edition (Python 3.9+).\n"
                 "Use start_professional.cmd or start_generalized.cmd to switch profiles.\n"
                 "The two editions share the same exact scoring code.\n"
-                "See docs/release_1.0.2.md for acceptance evidence and limitations.\n" % (__version__, edition)
+                "See docs/release_%s.md for acceptance evidence and limitations.\n" % (__version__, edition, __version__)
             ).encode("utf-8"))
             manifest = {"schema": "robustband.edition_bundle/v1", "version": __version__,
                         "edition": edition, "source_commit": commit,

@@ -2,7 +2,7 @@
 """robustband：已归档模型输出的计分协议审计与结论稳健带。
 接口：evaluate(preds, family, claim) -> Band；证书见 certificate.emit。
 """
-__version__ = "1.0.2"
+__version__ = "1.0.3"
 
 from .parsers import PARSE
 from .metrics import METRIC

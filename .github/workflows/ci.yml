@@ -43,7 +43,7 @@ jobs:
       - name: Measure fresh-process runtime and OS peak resident memory
         run: python -S experiments/measure_resources.py
       - name: Stage receipts only after both checks succeeded
-        run: python -c "from pathlib import Path; import shutil; p=Path('build/ci-evidence'); p.mkdir(parents=True,exist_ok=True); [shutil.copyfile(Path('results')/n,p/n) for n in ('quality_gate_1.0.2.json','resource_measurement_1.0.2.json')]"
+        run: python -c "from pathlib import Path; import shutil; p=Path('build/ci-evidence'); p.mkdir(parents=True,exist_ok=True); [shutil.copyfile(Path('results')/n,p/n) for n in ('quality_gate_1.0.3.json','resource_measurement_1.0.3.json')]"
       - name: Keep quality and newline-portability evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -51,7 +51,7 @@ jobs:
           name: quality-${{ matrix.os }}-py${{ matrix.python-version }}
           path: |
             build/ci-evidence/
-            build/resource_portability_1.0.2.json
+            build/resource_portability_1.0.3.json
             build/pytest.xml
             build/quality-gate-*.log
           if-no-files-found: error
@@ -112,7 +112,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: converter-${{ matrix.os }}
-          path: results/converter_acceptance_1.0.2.json
+          path: results/converter_acceptance_1.0.3.json
 
   portable:
     name: Windows portable executable
@@ -129,9 +129,9 @@ jobs:
         with:
           name: robustband-windows-portable
           path: |
-            dist/robustband-1.0.2-windows-x64.zip
-            results/portable_build_1.0.2.json
-            results/portable_acceptance_1.0.2.json
+            dist/robustband-1.0.3-windows-x64.zip
+            results/portable_build_1.0.3.json
+            results/portable_acceptance_1.0.3.json
 
   distribution:
     name: offline wheel and source distribution
@@ -154,11 +154,11 @@ jobs:
       - name: Preserve the verified distribution artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: robustband-1.0.2-linux-distributions
+          name: robustband-1.0.3-linux-distributions
           path: |
-            dist/robustband-1.0.2-py3-none-any.whl
-            dist/robustband-1.0.2.tar.gz
-            results/distribution_check_1.0.2.json
+            dist/robustband-1.0.3-py3-none-any.whl
+            dist/robustband-1.0.3.tar.gz
+            results/distribution_check_1.0.3.json
             build/welcome-generalized.html
             build/welcome-professional.html
             docs/api/
