@@ -5,6 +5,13 @@ This project adheres to [Semantic Versioning](https://semver.org/).
 
 ## [1.0.3] - 2026-11-09
 
+- Import CSV, TSV, JSON, JSONL/NDJSON, Excel XLSX and official MMLU-Pro result
+  ZIPs by file selection or drag-and-drop, with automatic validation and analysis.
+- Pair two model files strictly, expose the selected complete subject and missing
+  prediction policy, and export reports with normalized inputs and provenance.
+- Preserve Excel rich text without merging phonetic hints into actual cell data;
+  reject formulas, unsafe archive paths and XML entities.
+- Hide stale imported bundles when inputs or comparison settings change.
 - Preserve Unicode NEL, line separator and paragraph separator characters inside
   JSONL strings; only LF/CRLF delimit records. CSV-to-JSONL roundtrips retain them.
 - Reject CLI report destinations that would overwrite their input, policy, plan

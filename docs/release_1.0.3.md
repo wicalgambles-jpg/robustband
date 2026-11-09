@@ -67,7 +67,8 @@ The exact audit uses CPU arithmetic. Optional GPU validation compares actual CUD
 argmax/count preparation and NPZ conversion with CPU references; it is not an
 inference-speed benchmark. Browser automation covers Chromium-based local flows.
 
-No repository upload or remote CI execution is part of this release task.
+The executed results below describe local acceptance. GitHub Actions reports
+current remote platform checks separately.
 
 ## Executed local results
 

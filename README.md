@@ -4,9 +4,10 @@
 · ORCID [0009-0007-9138-4642](https://orcid.org/0009-0007-9138-4642)
 · **License:** MIT · **Version:** 1.0.3 · **Zero runtime dependencies** · Python ≥ 3.9
 
-**1.0.3 local build:** this version is available in the local source and portable
-bundles. It has not been uploaded as a GitHub release. See the
-[local acceptance notes](docs/release_1.0.3.md).
+**1.0.3:** drag in evaluation files for automatic import and analysis. Editable
+source editions and a Windows portable bundle are available from
+[Releases](https://github.com/wicalgambles-jpg/robustband/releases).
+See the [acceptance notes](docs/release_1.0.3.md) for executed checks and limits.
 
 `robustband` compares two sets of results on the same samples across scoring
 rules you choose. It shows **who leads, the margin range, and whether the conclusion
