@@ -31,10 +31,10 @@
     "generalized HTTP pages, isolation, exact decision and clean stop"
   ],
   "passed": 27,
-  "first_version_command_seconds": 0.3006,
+  "first_version_command_seconds": 0.3299,
   "python_on_PATH": false,
   "unicode_and_space_path": true,
-  "executable_sha256": "81232bfc25891b16d12969928df59e0fb122d84f87060f0c543b2614d6cbb5a4",
+  "executable_sha256": "d37f31c76a7baa255a2450085c33fda78d42c0f95e9695e87ca3841122ae6e39",
   "source_sha256_lf": {
     "submission/verify_portable.py": "45aa280d876f00d579d7a5c7ba991c156a8e4eab398506cdb833870a99d08e95",
     "submission/build_portable.py": "d12e9eb07fa2dbfde51b2d5622ba0ed0f7268cf21472b918031c9141e1b11f6a",
