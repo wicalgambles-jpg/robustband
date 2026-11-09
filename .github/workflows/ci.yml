@@ -86,6 +86,7 @@ jobs:
           node experiments/decision_browser_smoke.cjs
           node experiments/decision_browser_smoke.cjs --professional
           node experiments/matrix_browser_smoke.cjs
+          node experiments/import_browser_smoke.cjs
       - name: Keep the smoke receipts
         uses: actions/upload-artifact@v4
         with:
@@ -93,6 +94,7 @@ jobs:
           path: |
             results/decision_ui_*.json
             results/matrix_ui_*.json
+            results/import_ui_*.json
             results/local_ui_smoke_*.json
           if-no-files-found: error
 

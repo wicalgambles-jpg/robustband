@@ -40,10 +40,12 @@ remain available for editable adapters and optional NPZ preprocessing.
 1. With Python ≥ 3.9 installed, double-click `start_professional.cmd` for AI text
    evaluation, or `start_generalized.cmd` for domain measurements and editable
    modules. You can also run `python -m robustband ui` from the source folder.
-2. Choose the matching data card, download its template and replace the sample
-   rows. Select your file or drop it onto the page.
-3. Review the comparison rules, click **Compare my results**, and save the readable
-   report or full replay data. Rules and parameters expand when needed.
+2. Drop one paired file or two single-model files onto the page. CSV, TSV, JSON,
+   JSONL/NDJSON, Excel XLSX and official MMLU-Pro result ZIPs are supported.
+   Recognized inputs are validated and analyzed automatically.
+3. Check the sample count, source details, subject and scoring rules. Save the
+   complete result bundle, or change rules and recalculate the comparison.
+   See the [file import guide](docs/file_import.md) for schemas and limits.
 
 Results lead with a plain-language conclusion and show which rules produced the
 two endpoints. Example data is labeled; file errors explain the next repair step.
@@ -54,7 +56,7 @@ The text entry points start with the example's **two explicitly selected protoco
 your own task. The library's default family remains **80 configurations**.
 Both outputs belong to the same record in the new paired format; duplicate IDs,
 missing fields, unknown extra fields and incomplete selected group labels are rejected.
-For intentional extra columns, use the [explicit conversion workflow](docs/release_1.0.3.md#input-contract-change)
+For intentional extra columns, use the [explicit conversion workflow](docs/file_import.md#input-contract-change)
 and inspect its omission manifest before auditing.
 
 For terminal use and AI-assisted automation:

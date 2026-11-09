@@ -1,0 +1,31 @@
+{
+  "schema": "robustband.import_browser/v1",
+  "version": "1.0.3",
+  "browser": "Edg/148.0.3967.54",
+  "checked": [
+    "drop → automatic analysis: csv",
+    "downloaded bundle preserves inputs, provenance and replay",
+    "changed settings hide the previous imported bundle",
+    "drop → automatic analysis: tsv",
+    "drop → automatic analysis: json",
+    "drop → automatic analysis: jsonl",
+    "drop → automatic analysis: ndjson",
+    "drop → automatic analysis: xlsx",
+    "drop → automatic analysis: two independent model files",
+    "first archive waits without a stale result",
+    "drop → automatic analysis: MMLU-Pro ZIP",
+    "drop → automatic analysis: ranking long table",
+    "ranking report renders inside script-blocked sandbox",
+    "drop → automatic analysis: official MMLU-Pro complete CS subject",
+    "official import fits a 390px viewport",
+    "subject selection reruns a complete paired subject",
+    "unpaired official archives show an error without stale results"
+  ],
+  "script_exceptions": [],
+  "official_data_used": true,
+  "independent_human_user": false,
+  "source_sha256_lf": {
+    "robustband/ui.html": "c96f702fb3a8f3895057763530149216e6e1c961318d9ed6f75790f01110b85f",
+    "experiments/import_browser_smoke.cjs": "a3e9093d228f5cbdcc570d59481b2200756b1c55c26f3b11b07ef44c792a707b"
+  }
+}

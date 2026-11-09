@@ -5,6 +5,7 @@ import http.client
 import json
 import runpy
 import sys
+import time
 
 import pytest
 from robustband import cli, local_ui
@@ -41,7 +42,13 @@ def test_page_preview_audit_and_stop_use_the_same_engine(server):
     assert status == 200 and result["report"]["result"]["exact_band"] == ["-1", "1"]
     assert verify_report(result["report"]) and "&gt;" in result["html"]
     status, _, body = request(server, "/api/stop", {})
-    assert status == 200 and json.loads(body)["stopped"] and server.stop_requested
+    assert status == 200 and json.loads(body)["stopped"]
+    # The client can read the acknowledgement before the server thread reaches
+    # its finally block. Require the stop flag within a bounded interval.
+    deadline = time.monotonic() + 1
+    while not server.stop_requested and time.monotonic() < deadline:
+        time.sleep(0.001)
+    assert server.stop_requested
 
 
 def test_segmentation_mode_and_lossless_json_export(server):

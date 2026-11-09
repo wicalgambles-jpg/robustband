@@ -32,11 +32,11 @@
   "script_exceptions": [],
   "independent_human_user": false,
   "source_sha256_lf": {
-    "robustband/ui.html": "cccfa203937fe1457aaefa8a1144fb368948f777eca1f62b69b34e062454f875",
+    "robustband/ui.html": "c96f702fb3a8f3895057763530149216e6e1c961318d9ed6f75790f01110b85f",
     "experiments/ui_browser_smoke.cjs": "57d1290e8453d82dce3f27b48a6ee3671ffec03638c6c3bcd5dbe9b31ef8b7c7"
   },
   "screenshots": {
-    "build/local-ui-professional-desktop.png": "1e20d6a26f71bb8d13a13741e883477ddf31931cb024771dec19283875fa5e66",
-    "build/local-ui-professional-mobile.png": "33ae521a12edeb5359a99c8c4dc491135153d8dbc5ebf4a10ac1c4a1780701a4"
+    "build/local-ui-professional-desktop.png": "ef5c2d0eed983df86451f2f283f0708576b60d274e6c9cd1a8bf79b7e667636c",
+    "build/local-ui-professional-mobile.png": "aafeb6d67eb61f398c24815d97b99baf305087c16031f72d241690d672df9087"
   }
 }

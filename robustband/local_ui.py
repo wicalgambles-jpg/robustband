@@ -24,6 +24,7 @@ from .convert import convert_table
 MAX_REQUEST_BYTES = MAX_BYTES * 2 + 8192
 READ_TIMEOUT = 10
 MAX_CONNECTIONS = 8
+MAX_IMPORT_REQUEST_BYTES = 72 * 1024 * 1024
 
 
 class ThreadingHTTPServer(_ThreadingHTTPServer):
@@ -76,7 +77,7 @@ class _Handler(BaseHTTPRequestHandler):
         self.send_response(status)
         for name, value in (("Content-Type", type), ("Content-Length", str(len(data))),
                             ("Cache-Control", "no-store"), ("X-Content-Type-Options", "nosniff"),
-                            ("Content-Security-Policy", "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'none'")):
+                            ("Content-Security-Policy", "default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; connect-src 'self'; frame-src 'self'; frame-ancestors 'none'; base-uri 'none'")):
             self.send_header(name, value)
         self.end_headers()
         try:
@@ -128,11 +129,28 @@ class _Handler(BaseHTTPRequestHandler):
             except OSError:
                 pass
             return
+        if self.path == "/api/import":
+            if not self.server.import_slot.acquire(blocking=False):
+                self._send(503, {"error": "Another file import is running; retry shortly."})
+                try:
+                    self.connection.settimeout(0.05)
+                    self.rfile.read1(8192)
+                except OSError:
+                    pass
+                return
+            try:
+                self._post_body(MAX_IMPORT_REQUEST_BYTES)
+            finally:
+                self.server.import_slot.release()
+        else:
+            self._post_body(MAX_REQUEST_BYTES)
+
+    def _post_body(self, maximum):
         try:
             if len(self.headers.get_all('Content-Length', [])) != 1 or self.headers.get('Transfer-Encoding'):
                 raise ValueError('Send one Content-Length header without Transfer-Encoding.')
             length = int(self.headers.get("Content-Length", "0"))
-            if not 0 < length <= MAX_REQUEST_BYTES:
+            if not 0 < length <= maximum:
                 raise ValueError("Request is empty or exceeds the local upload limit.")
             self.connection.settimeout(READ_TIMEOUT)
             body = self.rfile.read(length)
@@ -146,7 +164,7 @@ class _Handler(BaseHTTPRequestHandler):
                 # The UI loop may exit the process as soon as this flag is set.
                 self.server.stop_requested = True
             return
-        if self.path not in ("/api/preview", "/api/audit", "/api/convert", "/api/matrix/preview", "/api/matrix/audit",
+        if self.path not in ("/api/import", "/api/preview", "/api/audit", "/api/convert", "/api/matrix/preview", "/api/matrix/audit",
                              "/api/decision/columns", "/api/decision/preview", "/api/decision/audit", "/api/decision/plan"):
             self._send(404, {"error": "Unknown local route."})
             return
@@ -158,6 +176,10 @@ class _Handler(BaseHTTPRequestHandler):
             payload = json.loads(decoded, object_pairs_hook=_json_object, parse_constant=_json_constant)
             if not isinstance(payload, dict):
                 raise ValueError("Request must be a JSON object.")
+            if self.path == "/api/import":
+                from .import_service import analyze_import
+                self._send(200, analyze_import(payload, self.server.edition))
+                return
             if self.path == '/api/convert':
                 self._send(200, convert_table(payload.get('text',''), payload.get('domain','text'),
                     payload.get('format','csv'), payload.get('output_format','csv'), payload.get('mapping'),
@@ -213,6 +235,7 @@ def create_server(port=0, edition="generalized"):
     server.timeout = 0.5
     server.token = secrets.token_urlsafe(32)
     server.stop_requested = False
+    server.import_slot = threading.BoundedSemaphore(1)
     return server
 
 

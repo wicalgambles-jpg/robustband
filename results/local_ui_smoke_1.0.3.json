@@ -36,11 +36,24 @@
   "script_exceptions": [],
   "independent_human_user": false,
   "source_sha256_lf": {
-    "robustband/ui.html": "cccfa203937fe1457aaefa8a1144fb368948f777eca1f62b69b34e062454f875",
+    "robustband/ui.html": "c96f702fb3a8f3895057763530149216e6e1c961318d9ed6f75790f01110b85f",
     "experiments/ui_browser_smoke.cjs": "57d1290e8453d82dce3f27b48a6ee3671ffec03638c6c3bcd5dbe9b31ef8b7c7"
   },
   "screenshots": {
-    "build/local-ui-desktop.png": "60cd9026773243dcc7e2f9d489345b785d80c0e12d2071d0073aa93ec9d96f68",
-    "build/local-ui-mobile.png": "3ef1feb600725e254b67b46cfab6f98c4ce4869a72efc60e1f45a2265371640a"
+    "build/local-ui-desktop.png": "1b9f75053ea9d150a8a86a8d72f09cc0235332b22859cdc11788c638bc82410d",
+    "build/local-ui-mobile.png": "2300915d58adb0421802d3f3bbd810b41129d0021f4ff01781c0ef1e58793e8f"
+  },
+  "standalone_preview": {
+    "filename": "WELCOME.html",
+    "sha256": "3f7f3fd5b651dda151bd631e67994528702e3c2927564f3a3206a161ec3d8efb",
+    "http_requests": 0,
+    "checked": [
+      "file-open preview",
+      "exact saved examples",
+      "fixed preview settings",
+      "local-app setup instructions",
+      "no network requests",
+      "mobile width"
+    ]
   }
 }

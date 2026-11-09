@@ -6,6 +6,16 @@ do not constitute independent third-party or unfamiliar-human acceptance.
 
 ## Changes
 
+- Drag one paired table or two single-model files into the local app for automatic
+  validation and analysis. Import accepts CSV, TSV, JSON, JSONL/NDJSON, Excel XLSX
+  and the official MMLU-Pro result ZIP layout. Complete-subject selection, strict
+  pairing, missing-prediction policy and source omissions are visible. Download
+  a ZIP containing the report, normalized input and import manifest. See the
+  [file import guide](file_import.md) for schemas and limits.
+- XLSX imports preserve ordinary rich text while excluding phonetic hints from
+  cell values. Formulas and unsafe archive/XML layouts are rejected.
+- Changing comparison settings hides the earlier import bundle. A new import
+  clears the prior result before validation, including the first of two archives.
 - JSONL treats LF/CRLF as record boundaries. Valid U+0085, U+2028 and U+2029
   characters inside strings survive ingestion, HTTP audits and CSV conversion.
 - CLI audits check output paths before writing. `report.json` and `report.html`
@@ -34,7 +44,7 @@ previous numbered release evidence remains available in history.
 |---|---|---|
 | Functionality | Existing regression suite, hand-checkable Unicode examples, roundtrip/replay, CLI and actual HTTP paths | Declared protocols and supplied data |
 | Reliability | Red/green defect regressions; input/config protection; malformed input, tamper and HTTP recovery tests | Individual file writes are atomic; a multi-file export is not a database transaction |
-| Usability | Accurate previews, actionable errors and six automated browser flows | Unfamiliar-human completion/time remains unmeasured |
+| Usability | Automatic import, source/scope warnings, seven automated browser flows and mobile-width checks | Unfamiliar-human completion/time remains unmeasured |
 | Efficiency | Three fresh processes per default-protocol workload; OS peak resident memory; black-box workload ceiling 256 MiB | Synthetic 5,000 pairs or 500 × 8 model rows; not a worst-case bound |
 | Maintainability | 100% package statement coverage, SPDX, frozen-source hashes and reviewed test oracles | Statement coverage does not measure assertion strength |
 | Portability | Local Python 3.9/3.12/3.13, CRLF/LF, Unicode paths, wheel/sdist installs, Windows portable and optional CUDA preparation | Current Linux/macOS runs and Firefox/Safari not executed in this local-only release |
@@ -61,22 +71,30 @@ No repository upload or remote CI execution is part of this release task.
 
 ## Executed local results
 
-- Complete quality gate: 424 tests, zero failures/errors/skips; 2325/2325 package
+- Complete quality gate: 520 tests, zero failures/errors/skips; 2769/2769 package
   statements covered. Frozen scoring source identities match the existing record.
-- Python 3.9: 424 tests passed. Python 3.13: the complete quality gate above.
-- Six Edge 148 browser variants: 105 checks, zero script exceptions, including
-  agreement between browser and exported HTML for a zero-endpoint ranking band.
+- Python 3.9: 520 tests passed. Python 3.13: the complete quality gate above.
+- Seven Edge 148 browser variants: 122 checks, zero script exceptions, including
+  actual file drops, result-bundle replay, sequential archive pairing, a complete
+  official subject, mobile width, mismatched-cohort rejection, and agreement
+  between browser and exported HTML for a zero-endpoint ranking band. The offline
+  WELCOME page also passed its six preview checks.
 - NPZ converter: 26 cases. Actual RTX 4060 CUDA preparation: three class-count
-  cases. Standalone Windows acceptance: nine checks, plus 20 fresh stop sessions.
+  cases. Standalone Windows acceptance: 27 checks, plus 20 fresh stop sessions.
 - Fresh offline wheel and source-distribution installs pass outside the checkout.
+
+The first final Python 3.9 run exposed a test synchronization race: the client
+could read the stop acknowledgement before the server thread set its stop flag.
+The test now requires that flag within one second, while separate tests still
+require acknowledgement-before-exit ordering. The failed run is retained.
 
 Three fresh-process measurements per workload on this Windows machine found:
 
 | Workload | Load, audit and replay | Maximum observed peak RSS |
 |---|---|---|
-| 5,000 text pairs | 0.152–0.158 s | 28.5 MiB |
-| 5,000 score pairs | 0.120–0.124 s | 26.2 MiB |
-| 500 samples × eight models | 0.089–0.090 s | 24.9 MiB |
+| 5,000 text pairs | 0.152–0.153 s | 28.9 MiB |
+| 5,000 score pairs | 0.123–0.125 s | 26.8 MiB |
+| 500 samples × eight models | 0.088–0.090 s | 25.3 MiB |
 
 These measurements include input preparation in OS peak RSS and exclude process
 startup from timing. They do not establish a worst-case resource bound.
@@ -102,3 +120,9 @@ incorrect. This differs from the upstream script's random fallback for missing
 predictions, so these are deterministic archive-audit results, not claimed official
 leaderboard accuracies. Full generated answers and original ZIPs are retained in
 the separate local evidence directory; the test uses archived extracted letters.
+
+The built Windows executable also imported the two original ZIPs through its
+actual HTTP interface with system-only PATH: 410 items, counts 134 and 173,
+exact band `[-39/410, -39/410]`, and verified result-bundle replay. One local run
+took 2.68 seconds for the import request and peaked at 158.1 MiB server RSS.
+This is a single measured archive workload, not a general memory or latency bound.

@@ -1,6 +1,9 @@
 # SPDX-License-Identifier: MIT
 """Exercise the built portable executable with no Python available on PATH."""
+import base64
 from hashlib import sha256
+import io
+import zipfile
 import http.client
 import json
 import os
@@ -33,6 +36,9 @@ def main():
         start=time.perf_counter(); assert run('--version').strip()==__version__
         cold=time.perf_counter()-start
         checked=['version in path containing Unicode and spaces; system-only PATH']
+        fixtures=base/'fixtures'
+        subprocess.run([sys.executable,'-S',str(ROOT/'experiments/import_fixtures.py'),str(fixtures)],check=True,capture_output=True)
+        import_cases=json.loads((fixtures/'cases.json').read_text(encoding='utf-8'))
         for domain in ('text','scores','segmentation'):
             run('demo','--domain',domain,'--output',domain)
             run('verify',domain+'/report.json')
@@ -66,6 +72,16 @@ def main():
                 example=json.loads(request('/api/decision/example'))
                 payload=dict(text=example['text'],format=example['format'],mapping=example['mapping'],plan=example['plan'])
                 assert json.loads(request('/api/decision/audit',payload))['report']['schema']=='robustband.decision/v1'
+                for case in import_cases:
+                    files=[{'name':Path(filename).name,'data':base64.b64encode(Path(filename).read_bytes()).decode('ascii')} for filename in case['files']]
+                    imported=json.loads(request('/api/import',{'files':files}))
+                    report=imported['report']
+                    band=report['pairs'][0]['exact_band'] if case.get('matrix') else report['result']['exact_band']
+                    assert report['result']['n_items']==case['n'] and band==case['band'],case['name']
+                    with zipfile.ZipFile(io.BytesIO(base64.b64decode(imported['bundle_base64']))) as archive:
+                        assert archive.read('report.json').decode('utf-8')==imported['json']
+                        assert sha256(archive.read('report.json')).hexdigest()==imported['manifest']['report_json_sha256']
+                    checked.append(edition+' portable import and replay bundle: '+case['name'])
                 assert json.loads(request('/api/stop',{}))['stopped']
                 assert process.wait(timeout=5)==0
                 checked.append(edition+' HTTP pages, isolation, exact decision and clean stop')

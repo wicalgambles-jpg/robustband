@@ -32,6 +32,10 @@ import robustband as rb
 from robustband.workflow import DEMO_CSV, load_paired, analyze, verify_report
 from robustband.domains import domain_options, audit_domain, verify_audit
 from robustband.compiled import CompiledScores
+from robustband.import_service import analyze_import
+import base64
+import io
+import zipfile
 from robustband.review import ReviewProblem, Target
 assert rb.__version__ == "__VERSION__"
 assert len(rb.build_family()) == 80
@@ -58,6 +62,11 @@ assert [d["id"] for d in domain_options("professional")] == ["text"]
 for option in domain_options():
     native = audit_domain(option["id"], option["example"], option["example_format"])
     assert verify_audit(native)
+for filename, data in (("paired.csv", DEMO_CSV), ("paired.json", json.dumps([{"sample_id":"s","prompt":"p","gold":"42","output_a":"42","output_b":"7"}]))):
+    imported=analyze_import({"files":[{"name":filename,"data":base64.b64encode(data.encode()).decode()}]},"generalized")
+    assert verify_audit(imported["report"])
+    with zipfile.ZipFile(io.BytesIO(base64.b64decode(imported["bundle_base64"]))) as archive:
+        assert archive.read("report.json").decode()==imported["json"]
 assets = Path(rb.__file__).parent
 assert "Run example" in (assets / "ui.html").read_text(encoding="utf-8")
 assert (assets / "decision.html").is_file()
@@ -90,7 +99,7 @@ print(json.dumps({"version":rb.__version__,"import_path":rb.__file__,"runtime_re
  "default_configs":80,"raw_cache_equal":True,"review_proof_verified":True,"adapter_import_verified":True,
  "workflow_replay_verified":True,"ui_assets_installed":True,"ranking_audit_verified":True,
  "module_and_console_entrypoints_verified":True,"validated_conversion_verified":True,
- "domain_adapters_replayed":["text","segmentation","scores"],"professional_profile_verified":True}))
+ "file_import_and_bundle_verified":True,"domain_adapters_replayed":["text","segmentation","scores"],"professional_profile_verified":True}))
 '''.replace("__VERSION__", VERSION)
 
 
@@ -118,7 +127,8 @@ def main():
     with zipfile.ZipFile(wheel) as archive:
         names = archive.namelist()
         for required in ("robustband/evalscope.py", "robustband/ui.html", "robustband/decision.html",
-                         "robustband/matrix.html", "robustband/matrix.py", "robustband/report_style.py"):
+                         "robustband/matrix.html", "robustband/matrix.py", "robustband/report_style.py",
+                         "robustband/importers.py", "robustband/import_service.py"):
             assert required in names, required
         assert not any("__pycache__" in path or path.endswith(".pyc") for path in names)
     source_members = []

@@ -41,11 +41,11 @@
   "script_exceptions": [],
   "independent_human_user": false,
   "source_sha256_lf": {
-    "robustband/ui.html": "cccfa203937fe1457aaefa8a1144fb368948f777eca1f62b69b34e062454f875",
+    "robustband/ui.html": "c96f702fb3a8f3895057763530149216e6e1c961318d9ed6f75790f01110b85f",
     "experiments/ui_browser_smoke.cjs": "57d1290e8453d82dce3f27b48a6ee3671ffec03638c6c3bcd5dbe9b31ef8b7c7"
   },
   "screenshots": {
-    "build/local-ui-extension-desktop.png": "92c93705aea7915971d501158e1bc32a962c253e26974777f6b01034774a1272",
-    "build/local-ui-extension-mobile.png": "019858ff8f84ea298dff6366c4791a4a33ea8e9d9a4bdf8ab62c9cd79ea12928"
+    "build/local-ui-extension-desktop.png": "98edaceeb5913fd10b0973afaf4dcca97f56cb2838039708a1e2ed47ab0eb24a",
+    "build/local-ui-extension-mobile.png": "15718aa40d2d7b752d7a48d34ca84064a92a708baac3a93e48f879656ecf5e5a"
   }
 }

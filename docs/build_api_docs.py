@@ -43,6 +43,8 @@ MODULES = [
     "robustband.audit_engine",
     "robustband.input_utils",
     "robustband.convert",
+    "robustband.importers",
+    "robustband.import_service",
     "robustband.storage",
     "robustband.domains",
     "robustband.segmentation",

@@ -10,6 +10,15 @@ The browser interface, command line and library
 use the same registered domain adapters and exact rational audit engine. There are no
 third-party runtime dependencies, model downloads or accounts required by this tool.
 
+## Import your own files
+
+Drop one paired table or two single-model result files into the local app.
+CSV, TSV, JSON, JSONL/NDJSON, Excel XLSX and official MMLU-Pro result ZIPs are
+supported. Recognized data is validated and analyzed automatically; review the
+source names, sample count, subject, rules and warnings before saving the complete
+result bundle. See the [file import guide](file_import.md) for required columns,
+strict pairing, Excel limitations and the MMLU-Pro missing-prediction policy.
+
 ## Compare more than two models (optional)
 
 The browser app has a ranking page: open **Ranking audit** in the header (or `/matrix`
